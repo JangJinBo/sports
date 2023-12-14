@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC 
+		"-//mybatis.org//DTD Config 3.0//EN" 
+		"https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.itbank.model.MemberDTO" alias="member"/>
+		<typeAlias type="com.itbank.model.MessageDTO" alias="message"/>
+		<typeAlias type="com.itbank.model.AdminBoardDTO" alias="adminboard"/>
+		<typeAlias type="com.itbank.model.InquiryDTO" alias="inquiry"/>
+		<typeAlias type="com.itbank.model.EventBoardDTO" alias="event"/>
+		<typeAlias type="com.itbank.model.SpaceDTO" alias="space"/>
+		<typeAlias type="com.itbank.model.AddressDTO" alias="address"/>
+		<typeAlias type="com.itbank.model.JuBoardDTO" alias="juBoard"/>
+		<typeAlias type="com.itbank.model.FileListDTO" alias="filelist"/>
+		<typeAlias type="com.itbank.model.MatchBoardDTO" alias="matchBoard"/>
+		<typeAlias type="com.itbank.model.SubstiBoardDTO" alias="substiBoard"/>
+		<typeAlias type="com.itbank.model.PartyBoardDTO" alias="partyBoard"/>
+		<typeAlias type="com.itbank.model.BoardDTO" alias="board"/>
+		<typeAlias type="com.itbank.model.ReviewDTO" alias="review"/>
+		<typeAlias type="com.itbank.model.ReserveDTO" alias="reserve"/>
+		<typeAlias type="com.itbank.model.PayDTO" alias="pay"/>
+		<typeAlias type="com.itbank.model.FacilityDTO" alias="facility"/>
+		<typeAlias type="com.itbank.model.ScrapDTO" alias="scrap"/>
+	</typeAliases>
+</configuration>

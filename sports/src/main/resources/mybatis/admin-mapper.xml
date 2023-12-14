@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatst.org//DTD Mapper 3.0//EN" 
+		"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<!-- mapper의 namespace는 연결할 dao 인터페이스의 풀네임을 작성한다 -->
+<mapper namespace="com.itbank.repository.AdminDAO">
+	<!-- 밴 해체 요청만 담은 메시지 고르기 -->
+	<select id="selectBannedList" resultType="message">
+		select 
+			s.*,
+			m.username
+		from message s
+		join member m
+			on s.sendId = m.userid
+		where s.banned = '1' or s.banned = '2'
+		 	and s.receiverid = 'admin'
+		 	and m.block = '1' or m.block = '2'
+			order by s.idx desc
+	</select>
+
+	<!-- 멤버 전체 불러오기 -->
+	<select id="searchMember" resultType="member">
+		select
+			*
+		from member
+			order by idx desc
+	</select>
+	
+	<!-- 공지사항 및 faq 글 작성 -->
+	<insert id="adminWrite" parameterType="adminboard">
+		insert into adminboard
+			(
+				title,
+				content,
+				type
+			)
+		values
+			(
+				#{title},
+				#{content},
+				#{type}
+			)
+	</insert>
+	
+	<!-- 답변이 없는 문답 게시판 들고 오기 -->
+	<select id="selectInquiryList" resultType="inquiry">
+		select title, sendId, wdate ,idx
+		from inquiry
+		where response = '0'
+		order by wdate desc	
+	</select>
+	
+	<!-- 신고사항만 받아오기 -->
+	<select id="getMessageDeclar" resultType="message">
+		select
+			s.*,
+			m.username
+		from message s
+			join member m
+				on s.sendid = m.userid
+		where s.receiverid = 'admin'
+			and s.banned = '0'
+			order by s.idx desc
+	</select>
+	
+	<!-- 문답 게시판에 답변 삽입 -->
+	<update id="replyInquiry" parameterType="inquiry">
+		update inquiry
+			set
+				response = '1',
+				answer = #{answer}
+			where idx = #{idx}
+	</update>
+	
+	<update id="doBlock" parameterType="int">
+		update member
+			set
+				block = '1'
+			where idx = #{idx}
+	</update>
+	
+	<update id="unDoBlock" parameterType="int">
+		update member
+			set
+				block = '0'
+			where idx = #{idx}
+	</update>
+	
+	<select id="selectuseridByIdx" parameterType="int" resultType="string">
+		select userid from member where idx = #{idx}
+	</select>
+	
+	<insert id="sendMessageBan" parameterType="message">
+		insert into message (sendId, receiverId, title, content)
+			values (#{sendId}, #{receiverId}, #{title}, #{content})
+	</insert>
+	
+</mapper>

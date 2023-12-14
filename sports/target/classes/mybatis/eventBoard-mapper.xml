@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatst.org//DTD Mapper 3.0//EN" 
+		"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<!-- mapper의 namespace는 연결할 dao 인터페이스의 풀네임을 작성한다 -->
+<mapper namespace="com.itbank.repository.EventDAO">
+
+<select id="trList" resultType="event">
+	select m.username,
+			m.userid,
+       	   b.boardType,
+           b.wdate,
+           e.idx,
+           e.title,
+           e.content
+    from event e
+    	join board b
+         	on e.board_idx = b.idx
+        join member m
+            on b.member_idx = m.idx  
+            where b.boardtype = 'training'
+            order by idx desc
+</select>
+
+<select id="comList" resultType="event">
+	select m.username,
+			m.userid,
+      	   b.boardType,
+     	   b.wdate,
+     	   e.idx,
+      	   e.title,
+           e.content
+    from event e
+        join board b
+        	on e.board_idx = b.idx
+        join member m
+            on b.member_idx = m.idx  
+            where b.boardtype = 'competition'
+            order by idx desc
+</select>
+
+<insert id="trainingInsert" parameterType="board">
+	insert into board 
+		(
+			member_idx, 
+			boardType
+		 	)
+		values
+			(
+			#{member_idx},
+			'training'
+			)
+</insert>
+
+<insert id="competitionInsert" parameterType="board">
+	insert into board 
+		(
+			member_idx, 
+			boardType
+		 	)
+		values
+			(
+			#{member_idx},
+			'competition'
+			)
+</insert>
+
+<select id="selectEventBoardMaxIdx" resultType="int">
+	select max(idx) from board
+</select>
+
+<insert id="trInsert" parameterType="event">
+	insert into event (title, board_idx, content)
+		values (#{title}, #{board_idx}, #{content})
+</insert>
+
+<insert id="comInsert" parameterType="event">
+	insert into event (title, board_idx, content)
+		values (#{title}, #{board_idx}, #{content})
+</insert>
+
+<select id="selectOne" parameterType="int" resultType="event">
+   select * from event E join board B on E.board_idx = B.idx where E.idx = #{idx}
+</select>
+
+<delete id="trDeleteBoard" parameterType="int">
+	delete event where idx = #{idx}
+</delete>
+
+<delete id="comDeleteBoard" parameterType="int">
+	delete event where idx = #{idx}
+</delete>
+
+<insert id="insertFile" parameterType="filelist">
+	insert into fileList (board_idx, fileName)
+		values (#{board_idx}, #{fileName})
+</insert>
+	
+<select id="selectFileName" resultType="string" parameterType="int">
+	select filename from filelist where board_idx = #{idx}
+</select>
+
+<update id="trUpdate">
+	update event set title=#{title}, content=#{content} where idx = #{idx}
+</update>
+
+<update id="comUpdate">
+	update event set title=#{title}, content=#{content} where idx = #{idx}
+</update>
+
+<delete id="deleteFileList" parameterType="hashmap">
+      delete fileList where fileName = #{fileName} and board_idx = #{board_idx}
+</delete>
+
+<select id="selectFileListByIdx" parameterType="int" resultType="filelist">
+   select * from fileList where board_idx = #{board_idx}
+</select>
+
+<select id="selectUsername" parameterType="int" resultType="event">
+	select 
+		M.username,
+		M.userid
+		from board B 
+			join member M
+				on B.member_idx = M.idx
+				where B.idx = #{idx}
+</select>
+
+<update id="update">
+   update event set title=#{title}, content=#{content} where idx = #{idx}
+</update>
+
+<select id="selectBoardIdx" parameterType="int">
+	select board_idx from event where idx = #{idx}
+</select>
+
+<delete id="deleteBoard" parameterType="int">
+	delete board where idx = #{idx}
+</delete>
+
+</mapper>

@@ -1,0 +1,383 @@
+@charset 'utf-8';
+button:hover, input[type="submit"]{
+	cursor: pointer;
+}
+.jusel > div:nth-child(1){
+   width: 100%;
+   height: 50px;
+   display: flex;
+   justify-content: space-between;
+   border-bottom: 2px solid black;
+}
+.jusel > div:nth-child(1) > div:nth-child(2){
+   padding: 0;
+   margin: 0;
+}
+.jusel > div:nth-child(1) > div:nth-child(1) > h2 > a{
+   padding: 0;
+   margin: 0;
+}
+.jusel > div:nth-child(1) > div{
+   height: 100%;
+}
+.miniNav{
+	display: flex;
+}
+.miniNav > .listnother{
+	margin: 0;
+	border: 2px solid #dadada;
+	border-bottom: 2px solid white;
+	padding: 0px 20px;
+	padding-top: 5px;
+	color: #bbb;
+	background-color: #eee;
+	border-radius: 10px 10px 0px 0px;
+}
+.miniNav > .listselected{
+	margin: 0;
+	border: 2px solid black;
+	border-bottom:  2px solid white;
+	padding: 0px 20px;
+	padding-top: 5px;
+	padding-bottom: 44px;
+	z-index: 100;
+	color: black;
+	background-color: white;
+	border-radius: 10px 10px 0px 0px;
+}
+.jusel > div:nth-child(1) > a > button{
+   height: 80%;
+   font-size: 1rem;
+   border: 1px solid #dadada;
+   background-color: white;
+   padding: 0 20px;
+}
+.jusel > div:nth-child(1) > a > button:hover{
+   border: none;
+   background-color: #c3e8a2;
+   color: white;
+   transition: 200ms;
+   cursor: pointer;
+}
+
+
+.jusel > div:nth-child(1) > div > form{
+   height: 80%;
+}
+.jusel > div:nth-child(1) form > *{
+   padding: 0 10px;
+   margin: 0;
+   height: 100%;
+   background-color: white;
+   border: 1px solid #dadada;
+   font-size: 0.8rem;
+   outline: none;
+}
+.juselSearch select:hover, .juselSearch input:nth-child(3):hover{
+   cursor: pointer;
+}
+
+.jusel > table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 0px auto;
+}
+.jusel > table > thead > tr{
+	border-bottom: 1px solid black;
+}
+.jusel > table > tbody > tr{
+	border-bottom: 1px solid #dadada;
+}
+.jusel > table > tbody > tr:nth-last-child(1){
+	border-bottom: 2px solid black;
+}
+.toJuView:hover{
+	cursor: pointer;
+}
+td, th {
+	padding: 20px 0px;
+}
+.cen{
+	text-align: center;
+}
+
+.listHead > div:nth-child(1){
+   height: 50px;
+   display: flex;
+   justify-content: space-between;
+   border-bottom: 2px solid black;
+}
+.listHead > div:nth-child(1) > *{
+   padding: 0;
+   margin: 0;
+}
+.listHead > div:nth-child(1) > a > button{
+   height: 80%;
+   font-size: 1rem;
+   border: 1px solid #dadada;
+   background-color: white;
+   padding: 0 20px;
+}
+.listHead > div:nth-child(1) > a > button:hover{
+   border: 1px solid #c3e8a2;
+   background-color: #c3e8a2;
+   color: white;
+   transition: 200ms;
+}
+
+#pageDiv {
+   width: 100%;
+   text-align: center;
+}
+#pageDiv > ul {
+      list-style: none;
+      display: inline-block;
+}
+#pageDiv > ul li {
+      float: left;
+      margin-left : -1px;
+      text-align: center;
+      width: 30px;
+      padding: 3px 0;
+}
+#pageDiv > ul li:hover {
+   text-decoration: underline;
+}
+.thisPage{
+   background-color: #aaa;
+   border-radius: 5px;
+   color: white;
+}
+
+
+
+.juView > div{
+	width: 100%;
+}
+div.viewHeader{
+/*    border-top: 2px solid black; */
+   border-bottom: 1px solid #dadada;
+   margin-bottom: 50px;
+}
+div.viewHeader > h3{
+   font-size: 1.5rem;
+}
+#juvtab{
+	width: 600px;
+	font-size: 1.1rem;
+	margin: 20px 0px;
+}
+#juvtab th{
+	background-color: #eeee55;
+	width: 100px;
+}
+#juvtab td{
+	background-color: #eeeeaa;
+	width: 500px;
+	padding-left: 10px;
+}
+
+
+.imgFile>img {
+	height: 400px;
+}
+
+.img-container img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+
+.jucon{
+	margin-top: 50px;
+}
+p.juviewMenu {
+	display: flex;
+	margin-bottom: 50px;
+}
+p.juviewMenu button{
+	border: none;
+	background-color: white;
+	color: blue;
+}
+p.juviewMenu button:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+p.juviewMes {
+	margin-bottom: 50px;
+}
+p.juviewMes button{
+	border: none;
+	background-color: #4040ff;
+	color: white;
+	padding: 5px 10px;
+}
+p.juviewMes button:hover{
+	background-color: #5555ff;
+	cursor: pointer;
+}
+.fine{
+   width: 100%;
+   border-bottom: 2px solid black;
+   margin-top: 200px;
+}
+
+#juWrite{
+	width: 100%;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	font-size: 1.2rem;
+}
+#juWrite > p{
+	width: 100%;
+	border: 2px solid #dadada;
+	padding-top: 0;
+}
+#juWrite > p:focus-within{
+	width: 100%;
+	border: 2px solid #a3e8c2;
+	padding-top: 0;
+}
+#juWrite select, #juWrite input, #juWrite textarea{
+	font-size: 1rem;
+}
+#juWrite > div:nth-child(1) {
+	height: 30px;
+	margin: 20px 0px;
+}
+#juBType {
+	width: 250px;
+	height: 100%;
+	outline: none;
+	text-align: center;
+}
+#juWrite input{
+	width: 98%;
+	margin: 0px 5px;
+	outline: none;
+	border: none;
+}
+#juWrite textarea{
+	width: 98%;
+	height: 600px;
+	margin: 0px 5px;
+	margin-top: 3px;
+	outline: none;
+	border: none;
+	resize: none;
+}
+#juWrite label{
+	width: 100px;
+}
+#juWrite label > input{
+	width: 50px;
+}
+#subp{
+	background-color: #eee;
+	border:none;
+}
+#juSub{
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	background-color: none;
+}
+#juSub:focus-within, #juSub:hover, #subp:hover #juSub{
+	background-color: #73e852;
+	color: white;
+	cursor: pointer;
+}
+#subp:focus-within, #subp:hover{
+	background-color: #73e852;
+	border: 2px solid #73e852;
+	cursor: pointer;
+}
+
+.none{
+	display: none;
+}
+
+
+
+
+#regForm{
+	width: 100%;
+	border-bottom: 2px solid black;
+	font-size: 1.1rem;
+	margin: 20px 0px;
+}
+#regForm input, #regForm textarea, #regForm select{
+	outline: none;
+	padding: 10px;
+	border: 3px solid #dadada;
+	font-size: 1rem;
+}
+#regForm input:focus, #regForm textarea:focus, #regForm select:focus{
+	border: 3px solid #a0c0f0;
+}
+#regForm input{
+	width: 300px;
+}
+#regForm input[type="radio"]{
+	color: white;
+	width: 50px;
+	background-color: #bbb;
+}
+#regForm input[type="submit"]{
+	color: white;
+	background-color: #bbb;
+	margin: 20px;
+}
+#regForm input[type="submit"]:focus{
+	background-color: #a0c0f0;
+}
+#regForm input[type="submit"]:hover{
+	background-color: #a0c0f0;
+	cursor: pointer;
+}
+#regForm input[type="button"]:hover{
+	cursor: pointer;
+}
+#regForm button{
+	color: white;
+	background-color: #bbb;
+	margin: 20px;
+	padding: 10px;
+	border: none
+}
+#regForm textarea{
+	width: 500px;
+	resize: none;
+	height: 250px;
+}
+
+#regtb{
+	width: 900px;
+}
+#regtb td:nth-child(1){
+	width: 200px;
+}
+
+#regtb tr{
+	border: 3px solid #dadada;
+	padding: 5px 0px;
+}
+
+table#jutab th {
+	background-color: #eeee55;
+	width: 100px;
+}
+
+table#jutab td{
+	background-color: #eeeeaa;
+	width: 500px;
+	padding-left: 10px;
+}
+
+
+
+
+
+

@@ -1,0 +1,332 @@
+@charset 'utf-8';
+
+body {
+   padding: 0;
+   margin: 0;
+   overflow-y: scroll;
+   font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+#mainHeader {
+   text-align: center;
+   width: 1200px;
+   margin: 0 auto;
+}
+
+.frame {
+   width: 1200px;
+   min-height: 35vh;
+   margin: 0 auto;
+}
+
+#headerStatus {
+   margin:0 20px;
+   background-color: #EEEEEE;
+   /*
+   background-color: white;
+   */
+}
+
+#fixedMain {
+   box-sizing:border-box;
+   position: sticky;
+   top:0px;
+   z-index: 500;
+   background-color: #EEEEEE;
+   width: 100%;
+   padding:0 150px;
+   padding-bottom: 1px;
+   margin-bottom: 30px;
+   box-shadow: 0 5px 5px 0px rgba(0, 0, 0, 0.1); 
+}
+
+header {
+   background-color: #EEEEEE;
+   width: 100%;
+
+}
+
+.hidden {
+   display: none;
+}
+
+a {
+   all: unset;
+   cursor: pointer;
+   color: inherit;
+   display: block;
+}
+
+.homeBtn {
+   text-align: center;
+}
+
+#clock {
+   font-size: 0.8rem;
+}
+
+.sb {
+   display: flex;
+   justify-content: space-between;
+}
+
+ul {
+   padding: 10px;
+   list-style: none;
+}
+
+.centerBtn {
+   box-sizing:border-box;
+   width: 550px;
+   height: 400px;
+   text-align: center;
+   line-height: 400px;
+   font-weight: bold;
+   background-repeat: no-repeat;
+   border-radius: 15px;
+   margin: 5px;
+   transition: 0.5s ease;
+}
+.centerBtn:hover {
+   box-shadow: 0 5px 9px rgba(0,0,0,0.16), 
+            0 5px 9px rgba(0,0,0,0.23);
+}
+.centerBtn > a {
+   font-size: 2.5rem;
+   text-shadow: -1.5px 0 #eeeeee, 
+            0 1.5px #eeeeee,
+            1.5px 0 #eeeeee, 
+            0 -1.5px #eeeeee;
+   transition: 0.5s ease;
+}
+.centerBtn:hover > a {
+   font-size: 3rem;
+   text-shadow: -3px 0 #eeeeee, 
+               0 3px #eeeeee, 
+               3px 0 #eeeeee, 
+               0 -3px #eeeeee;
+}
+
+#center {
+   margin: 20px auto;
+}
+
+#center>div {
+   display: flex;
+   justify-content: center;
+}
+
+#center>div:first-child {
+   margin-right: 0;
+}
+
+#menu{
+   margin-top: 0;
+   padding: 0;
+}
+
+#menu>li {
+   box-sizing :border-box;
+   width: 270px;
+   position: relative;
+   border-bottom : 3px solid #C0C0C0;
+   border-left : 3px solid #eeeeee;
+   margin: 0 50px;
+   margin-top :5px;
+   text-align: center;
+   height: 65px;
+   line-height: 65px;
+   font-size: 1.5rem;
+/*    transition: border-bottom 0.5s ease,  */
+/*             border-left 0.5s ease; */
+}
+#menu>li:hover {
+   border-bottom : 3px solid gray;
+   border-left : 3px solid gray;
+   transition: 0.5s;
+}
+
+
+
+.drop {
+   position: absolute;
+   display: none;
+   left: -3px;
+   padding: 0;
+}
+
+#menu>li:hover>.drop {
+   display: block;
+}
+
+.drop>li {
+/*    left:-50px;       */
+   box-sizing: border-box;
+   background-color: white;
+   z-index: 500;
+   width: 270px;
+   margin-top: -1px;
+   border-bottom : 3px solid white;
+   border-top : 3px solid white;
+}
+.drop>li:hover {
+   border-bottom : 3px solid #C0C0C0;
+   border-top : 3px solid #C0C0C0;
+/*    transition: border-bottom 0.5s ease,  */
+/*          border-top 0.5s ease; */
+}
+
+footer {
+   margin-top: 100px;
+   width: 100%;
+   height: 200px;
+   background-color: #555;
+}
+
+/* === 모달 ===  */
+.modalBtn {
+   all: unset;
+   cursor: pointer;
+}
+
+.modalBtn:first-child {
+   margin-right: 10px;
+}
+
+.modal {
+   display: none;
+   position: fixed;
+   z-index: 1;
+   padding-top: 15%;
+   margin-top: -290px;
+   left: 0;
+   top: px;
+   width: 100%;
+   height: 132%;
+   background-color: rgba(98, 98, 98, 0.772);
+}
+
+#myModal2 {
+   display: none;
+   position: fixed;
+   z-index: 1;
+   padding-top: 50px;
+   margin-top: -538px;
+   left: 0;
+   top: px;
+   width: 100%;
+   height: 132%;
+   background-color: rgba(98, 98, 98, 0.772);
+}
+/* animatetop라는 이름으로 top -300에서 0으로 움직이는 에니메이션 정의 */
+@
+keyframes animatetop {from { top:-300px;
+   opacity: 0;
+}
+
+to {
+   top: 0;
+   opacity: 1;
+}
+
+}
+.modalContent {
+   position: relative;
+   background-color: #fefefe;
+   margin: auto;
+   padding: 0;
+   border: 1px solid #888;
+   width: 40%;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+      rgba(0, 0, 0, 0.19);
+   animation-name: animatetop; /*위에서 정의한 에니메이션 사용*/
+   animation-duration: 0.4s;
+}
+
+.closeModal {
+   color: white;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+}
+
+.closeModal:hover, .closeModal:focus {
+   color: #000;
+   text-decoration: none;
+   cursor: pointer;
+}
+
+.modalHeader img {
+   width: 400px;
+   margin: 45px auto;
+   margin-left: 28px;
+}
+
+.modalHeader {
+   padding: 2px 16px;
+   padding-left: 20px;;
+   background-color: #e3e8c2;
+   color: white;
+   text-align: center;
+}
+
+.modalBody {
+   padding: 20px 30px;
+   text-align: center;
+}
+
+#tomsg {
+   margin-left: 10px;
+}
+
+#msgicon {
+   font-size: 1.1rem;
+   margin-right: -10px;
+   border-radius: 50%;
+   padding: 0px 5px;
+}
+
+#tomsg:hover #msgicon {
+   color: orangered;
+   background-color: #dadada;
+}
+
+#countmsg {
+   width: 19px;
+   font-size: 0.6rem;
+   padding: 0px 5px;
+   color: white;
+   border-radius: 50px;
+}
+
+
+pre{
+   font-family: inherit;
+}
+
+
+.relbox{
+	position: relative;
+}
+.memberbox{
+	position: absolute;
+	font-size: 0.85rem;
+	text-align: center;
+	width: 100px;
+	bottom: -25px;
+	left: 0;
+	border: 1px solid #ddd;
+	z-index: 500;
+}
+.memberbox > div{
+	padding: 5px;
+	background-color: #eee;
+}
+.disnone{
+	display: none;
+}
+.disblock{
+	display: block;
+}
+

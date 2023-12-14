@@ -1,0 +1,364 @@
+@charset 'utf-8';
+button:hover{
+   cursor: pointer;
+}
+#adminHeader{
+   position: fixed;
+   border: 2px solid #dadada;
+   text-align: center;
+   z-index: 500;
+   margin-left:30px;
+   background-color: white;
+   top: 300px;
+}
+#adminHeader:hover div{
+   display: block;
+}
+#adminHeader div{
+   display: none;
+}
+#adminHeader > div > h3{
+   background-color: #dadada;
+   margin: 0;
+   padding: 20px 0;
+}
+#adminHeader > div >  a{
+   padding: 20px 0;
+   border: 0.5px solid #eee;
+   background-color: white;
+   font-weight: bold;
+}
+#adminHeader > div > a:hover{
+   background-color: #eee;
+}
+#admin{
+   display: flex;
+   flex-wrap: wrap;
+   padding: 0;
+}
+.dash {
+   margin: -0.5px;
+   width: 600px;
+   height: 500px;
+   border: 1px solid #dadada;
+   box-sizing: border-box;
+}
+.dashHead{
+   width: 100%;
+   font-size: 1.5rem;
+   background-color: #eee;
+   display: flex;
+   justify-content: space-between;
+}
+.dashHead > span{
+   padding: 15px;
+}
+
+
+.bannedcon{
+   width: 100%;
+   border-bottom: 1px solid #eee;
+   padding: 10px 0px;
+}
+.bannedcon > span:nth-child(1){
+   width: 30%;
+   text-align: 
+}
+.bannedcon > span:nth-child(2){
+   width: 70%;
+}
+
+
+
+
+
+
+
+
+
+
+.listHead > div:nth-child(1){
+   height: 50px;
+   display: flex;
+   justify-content: space-between;
+}
+.listHead > div:nth-child(1) > *{
+   padding: 0;
+   margin: 0;
+}
+.listHead > div:nth-child(1) > a > button{
+   height: 80%;
+   font-size: 1rem;
+   border: 1px solid #dadada;
+   background-color: white;
+   padding: 0 20px;
+}
+.listHead > div:nth-child(1) > a > button:hover{
+   border: 1px solid #c3e8a2;
+   background-color: #c3e8a2;
+   color: white;
+   transition: 200ms;
+}
+
+
+.adform{
+   border-top: 2px solid black;
+   border-bottom: 2px solid black;
+}
+
+#inquiryRequest{
+   width: 600px;
+   margin: 0 auto;   
+   font-size: 1.15rem;
+   padding: 20px 0;
+}
+#inquiryRequest > *{
+   width: 100%;
+   padding: 0;
+   margin-top: 10px;
+   overflow: hidden;
+}
+.inquiryInput {
+   border: 2px solid #aaa;
+}
+.inquiryInput:nth-child(1){
+   height: 40px;
+}
+.inquiryInput:nth-child(2){
+   height: 200px;
+}
+.inquiryInput:focus-within {
+   border: 2px solid #f08080;
+}
+#inquiryRequest > div > *{
+   border: none;
+   outline: none;
+   font-size: 0.95rem;
+}
+.inquiryInput > input{
+   width: 572px;
+   padding: 0 14px;
+   height: 40px;
+   margin: auto;
+}
+.inquiryInput > textarea{
+   resize: none;
+   height: 200px;
+   width: 572px;
+   padding: 14px 14px;
+}
+
+#inquiryRequest p{
+   padding: 0;
+   margin: 50px 0;
+   width: 100%;
+   height: fit-content;
+   text-align: center;
+}
+#inquiryRequest button{
+   background-color: #aaa;
+   width: 200px;
+   border: 2px solid #aaa;
+   color: white;
+   padding: 10px;
+   border-radius: 5px;
+   outline: none;
+}
+#inquiryRequest button:hover, #inquiryRequest button:focus{
+   background-color: #f08080;
+   border: 2px solid #f08080;
+}
+
+.content-row {
+    display: none;
+}
+.content-rows {
+    display: none;
+}
+
+/* 제목을 클릭했을 때 내용 표시 스타일 */
+.adselected{
+   background-color: #aaa;
+}
+.content-row.show-content {
+    display: table-row;
+}
+.content-rows.show-content {
+    display: table-row;
+}
+.sel-title{
+   background-color: #ddd;
+}
+
+.facilityTitle {
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+}
+    
+.bannedcont{
+   width: 100%;
+}
+.bannedcont a{
+   padding: 0;
+   margin: 0;
+}
+.bannedcont .content{
+   width: 100%;
+   height: fit-content;
+}
+.bannedcont .content pre{
+   width: 80%;
+   background-color: #ddd;
+   padding: 20px;
+   border-radius: 20px;
+   margin: 10px auto;
+}
+.adTitle, .adTitles, .adTitlei{
+   width: 100%;
+   border-top: 1px solid #aaa;
+   margin-top: -1px;
+   display: flex;
+   justify-content: space-between;
+}
+.adTitle > div{
+   width: 540px;
+}
+.adTitle span:nth-child(1){
+   border-radius: 50px;
+   border: 1px solid #aaa;
+   background-color: #eee;
+   padding: 2px 10px;
+   margin: 0px 10px;
+}
+.adTitle:hover{
+   cursor: pointer;
+}
+.adTitles > div{
+   width: 540px;
+}
+.adTitles span:nth-child(1){
+   border-radius: 50px;
+   border: 1px solid #aaa;
+   background-color: #eee;
+   padding: 2px 10px;
+   margin: 0px 10px;
+}
+.adTitles:hover{
+   cursor: pointer;
+}
+.adTitlei > div{
+   width: 540px;
+}
+.adTitlei span:nth-child(1){
+   border-radius: 50px;
+   border: 1px solid #aaa;
+   background-color: #eee;
+   padding: 2px 10px;
+   margin: 0px 10px;
+}
+.adTitlei:hover{
+   cursor: pointer;
+}
+
+#admemlist{
+   padding-top:20px;	
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+}
+#admemlist a{
+   padding: 0;
+   margin: 0;
+}
+#admembutton{
+   width: 110px;
+   display: flex;
+}
+#admemlist button{
+   padding: 10px;
+   width: 50px;
+   background-color: white;
+   margin-right: 5px;
+   border: 1px solid #dadada;
+}
+
+#admemlist > form *{
+   outline: none;
+   background-color: white;
+   padding: 10px;
+   border: 1px solid #dadada;
+}
+#admemlist > form{
+   width: 350px;
+   font-size: 1.1rem;
+   text-align: center;
+}
+#admemlist > select{
+   width: 150px;
+}
+#admemlist > input:nth-child(1){
+   width: 400px;
+}
+#admemlist > input:nth-child(2){
+   width: 150px;
+}
+
+#admemscroll{
+   overflow-y: auto;
+   height: 435px;
+}
+#admemscroll::-webkit-scrollbar {
+   width: 5px;
+}
+#admemscroll::-webkit-scrollbar-thumb {
+   background-color: #dadada;
+   border-radius: 50px;
+   border: none;
+}
+#admemscroll::-webkit-scrollbar-track {
+   opacity: 0;
+}
+
+#admemtb{
+   width: 100%;
+   margin: 20px 0;
+   border-collapse: collapse;
+}
+#admemtb tbody span:hover{
+   cursor: pointer;
+}
+#admemtb th{
+   background-color: #eee;
+}
+#admemtb th,#admemtb td{
+   padding: 10px;
+   text-align: center;
+   border: 1px solid #dadada;
+}
+
+
+.bspan{
+   background-color: white;
+   border-radius: 50%;
+   border: 3px solid #f05050;
+   padding: 2px;
+}
+.uspan{
+   background-color: #5050f0;
+   border-radius: 50px;
+   color: white;
+   border: 3px solid #5050f0;
+   padding: 0px 5px;
+}
+.sspan{
+   background-color: #50f050;
+   border-radius: 50px;
+   color: white;
+   border: 3px solid #50f050;
+   padding: 0px 5px;
+}
+
+
+
+

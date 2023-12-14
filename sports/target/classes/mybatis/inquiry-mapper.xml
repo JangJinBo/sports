@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatst.org//DTD Mapper 3.0//EN" 
+		"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<!-- mapper의 namespace는 연결할 dao 인터페이스의 풀네임을 작성한다 -->
+<mapper namespace="com.itbank.repository.InquiryDAO">
+
+
+<select id="selectInquiryList" resultType="inquiry" parameterType="string">
+	select * from inquiry where sendId = #{sendId} order by idx desc
+</select>
+<select id="selectInquiryOne" resultType="inquiry" parameterType="int">
+	select * from inquiry where idx = #{idx}
+</select>
+<insert id="sendInquiry" parameterType="inquiry">
+	insert into inquiry 
+		(
+			title,
+			content,
+			sendId
+		) 
+			values 
+		(
+			#{title},
+			#{content},
+			#{sendId}
+		)
+</insert>
+
+<insert id="sendDeclaration" parameterType="message">
+	insert into message
+		(
+			title,
+			sendid,
+			receiverid,
+			content	
+		)
+			values
+		(
+			#{title},
+			#{sendId},
+			'admin',
+			#{content}
+		)	
+</insert>
+</mapper>

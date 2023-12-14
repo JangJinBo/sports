@@ -1,0 +1,256 @@
+@charset 'utf-8';
+button:hover{
+	cursor: pointer;
+}
+.event > div:nth-child(1){
+   width: 100%;
+   height: 50px;
+   display: flex;
+   justify-content: space-between;
+   border-bottom: 2px solid black;
+}
+.event > div:nth-child(1) > div:nth-child(2){
+   padding: 0;
+   margin: 0;
+}
+.event > div:nth-child(1) > div:nth-child(1) > h2 > a{
+   padding: 0;
+   margin: 0;
+}
+.event > div:nth-child(1) > div{
+   height: 100%;
+}
+.miniNav{
+	display: flex;
+}
+.miniNav > .listnother{
+	margin: 0;
+	border: 2px solid #dadada;
+	border-bottom: 2px solid white;
+	padding: 0px 20px;
+	padding-top: 5px;
+	color: #bbb;
+	background-color: #eee;
+	border-radius: 10px 10px 0px 0px;
+}
+.miniNav > .listselected{
+	margin: 0;
+	border: 2px solid black;
+	border-bottom:  2px solid white;
+	padding: 0px 20px;
+	padding-top: 5px;
+	padding-bottom: 44px;
+	z-index: 100;
+	color: black;
+	background-color: white;
+	border-radius: 10px 10px 0px 0px;
+}
+.event > div:nth-child(1) > a > button{
+   height: 80%;
+   font-size: 1rem;
+   border: 1px solid #dadada;
+   background-color: white;
+   padding: 0 20px;
+}
+.event > div:nth-child(1) > a > button:hover{
+   border: none;
+   background-color: #c3e8a2;
+   color: white;
+   transition: 200ms;
+   cursor: pointer;
+}
+
+
+.event > div:nth-child(1) > div > form{
+   height: 80%;
+}
+.event > div:nth-child(1) form > *{
+   padding: 0 10px;
+   margin: 0;
+   height: 100%;
+   background-color: white;
+   border: 1px solid #dadada;
+   font-size: 0.8rem;
+   outline: none;
+}
+.eventSearch select:hover, .eventSearch input:nth-child(3):hover{
+   cursor: pointer;
+}
+
+.event > table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 0px auto;
+}
+.event > table > thead > tr{
+	border-bottom: 1px solid black;
+}
+.event > table > tbody > tr{
+	border-bottom: 1px solid #dadada;
+}
+.event > table > tbody > tr:nth-last-child(1){
+	border-bottom: 2px solid black;
+}
+.toEventView:hover{
+	cursor: pointer;
+}
+td, th {
+	padding: 20px 0px;
+}
+.cen{
+	text-align: center;
+}
+
+
+#pageDiv {
+   width: 100%;
+   text-align: center;
+}
+#pageDiv > ul {
+      list-style: none;
+      display: inline-block;
+}
+#pageDiv > ul li {
+      float: left;
+      margin-left : -1px;
+      text-align: center;
+      width: 30px;
+      padding: 3px 0;
+}
+#pageDiv > ul li:hover {
+   text-decoration: underline;
+}
+.thisPage{
+   background-color: #aaa;
+   border-radius: 5px;
+   color: white;
+}
+
+.listHead > div:nth-child(1){
+   height: 50px;
+   display: flex;
+   justify-content: space-between;
+}
+.listHead > div:nth-child(1) > *{
+   padding: 0;
+   margin: 0;
+}
+.listHead > div:nth-child(1) > a > button{
+   height: 80%;
+   font-size: 1rem;
+   border: 1px solid #dadada;
+   background-color: white;
+   padding: 0 20px;
+}
+.listHead > div:nth-child(1) > a > button:hover{
+   border: 1px solid #c3e8a2;
+   background-color: #c3e8a2;
+   color: white;
+   transition: 200ms;
+}
+
+#eventWrite{
+	width: 100%;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	font-size: 1.2rem;
+}
+#eventWrite > p{
+	width: 100%;
+	border: 2px solid #dadada;
+	padding-top: 0;
+}
+#eventWrite > p:focus-within{
+	width: 100%;
+	border: 2px solid #a3e8c2;
+	padding-top: 0;
+}
+#eventWrite select, #eventWrite input, #eventWrite textarea{
+	font-size: 1rem;
+}
+#eventWrite > div:nth-child(1) {
+	height: 30px;
+	margin: 20px 0px;
+}
+#eventType {
+	width: 250px;
+	height: 100%;
+	outline: none;
+	text-align: center;
+}
+#eventWrite input{
+	width: 98%;
+	margin: 0px 5px;
+	outline: none;
+	border: none;
+}
+#eventWrite textarea{
+	width: 98%;
+	height: 600px;
+	margin: 0px 5px;
+	margin-top: 3px;
+	outline: none;
+	border: none;
+	resize: none;
+}
+#subp{
+	background-color: #eee;
+	border:none;
+}
+#eventSub{
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	background-color: none;
+}
+#eventSub:focus-within, #eventSub:hover, #subp:hover #eventSub{
+	background-color: #73e852;
+	color: white;
+	cursor: pointer;
+}
+#subp:focus-within, #subp:hover{
+	background-color: #73e852;
+	border: 2px solid #73e852;
+	cursor: pointer;
+}
+
+.none{
+	display: none;
+}
+
+.eventView > div{
+	width: 100%;
+}
+div.viewHeader{
+   border-top: 2px solid black;
+   border-bottom: 1px solid #dadada;
+   margin-bottom: 50px;
+}
+div.viewHeader > h3{
+   font-size: 1.5rem;
+}
+
+p.eventviewMenu {
+	display: flex;
+	margin-bottom: 50px;
+}
+p.eventviewMenu button{
+	border: none;
+	background-color: white;
+	color: blue;
+}
+p.eventviewMenu button:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+.fine{
+   width: 100%;
+   border-bottom: 2px solid black;
+   margin-top: 200px;
+}
+
+#eventmod input, #eventmod textarea{
+	outline: none;
+}
+

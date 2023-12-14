@@ -1,0 +1,309 @@
+@charset 'utf-8';
+button:hover, input[type="submit"]{
+   cursor: pointer;
+}
+#notice > div:nth-child(1){
+   width: 100%;
+   height: 50px;
+   display: flex;
+   justify-content: space-between;
+}
+#notice > div:nth-child(1) > *{
+   padding: 0;
+   margin: 0;
+}
+#notice > div:nth-child(1) > div{
+   height: 100%;
+}
+#notice > div:nth-child(1) > div > form{
+   height: 80%;
+}
+#notice > div:nth-child(1) form > *{
+   padding: 0 10px;
+   margin: 0;
+   height: 100%;
+   background-color: white;
+   border: 1px solid #dadada;
+   font-size: 0.8rem;
+   outline: none;
+}
+#noticeSearch select:hover, #noticeSearch input:nth-child(3):hover{
+   cursor: pointer;
+}
+div.noticeMain{
+      width: 100%;
+      font-size: 1.1rem;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px solid #aaa;
+}
+div.noticeMain:hover{
+   cursor: pointer;
+}
+div.noticeMain > *{
+    margin: 0 10px;
+}
+div.noticeMain > div:nth-child(1){
+   font-size: 1.03rem;
+}
+div.noticeMain > div:nth-child(1) > span{
+   padding: 5px 20px;
+   border: 1px solid #dadada;
+   border-radius: 50px;
+   margin-right: 30px;
+}
+div.noticeMain > div:nth-child(2){
+   font-size: 0.9rem;
+}
+div.noticeMain:nth-child(1){
+      border-top: 2px solid black;
+}
+div.noticeMain:nth-last-child(1){
+      border-bottom: 2px solid black;
+}
+#pageDiv {
+   width: 100%;
+   text-align: center;
+}
+#notice > div > ul {
+      list-style: none;
+      display: inline-block;
+}
+#notice > div > ul li {
+      float: left;
+      margin-left : -1px;
+      text-align: center;
+      width: 30px;
+      padding: 3px 0;
+}
+#notice > div > ul li:hover {
+   text-decoration: underline;
+}
+.thisPage{
+   background-color: #aaa;
+   border-radius: 5px;
+   color: white;
+}
+#faqMain {
+   border-top: 2px solid black;
+   border-bottom: 2px solid black;
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+}
+#faqMain > div{
+      width: 220px;
+      height: 150px;
+      margin: 10px 8.9px;
+      border: 1px solid #dadada;
+}
+#faqMain > div > div {
+   width: 170px;
+   margin: 0 auto;
+   margin-top: 15px;
+}
+#faqMain > div > div > span{
+   font-weight: bold;
+   font-size: 1.3rem;   
+   color: #ccc;
+}
+#faqMain > div > div > div {
+   font-weight: 600;
+   font-size: 0.95rem;
+   margin-top: 11px;
+}
+#faqMain > div:hover{
+   cursor: pointer;
+   background-color: #c3e8a2;
+   border: 1px solid #c3e8a2;
+   box-shadow: 0 0 10px #aaa;
+}
+#faqMain > div:hover > div > *{
+   color: white;   
+}
+#myInquiry{
+   border-top: 2px solid black;   
+}
+#myInquiry > div{
+      width: 100%;
+      text-align: center;
+      font-size: 1.1rem;
+      padding: 20px 0;
+      border-bottom: 1px solid #aaa;
+}
+#myInquiry > div:hover{
+   cursor: pointer;
+}
+#myInquiry > div.block:nth-last-child(1){
+   border-bottom: 2px solid black;
+}
+.listHead > div:nth-child(1){
+   height: 50px;
+   display: flex;
+   justify-content: space-between;
+}
+.listHead > div:nth-child(1)  *{
+   padding: 0;
+   margin: 0;
+}
+.listHead > div:nth-child(1)  a > button{
+   height: 80%;
+   font-size: 1rem;
+   border: 1px solid #dadada;
+   background-color: white;
+   padding: 0 20px;
+}
+.listHead > div:nth-child(1)  a > button:hover{
+   border: 1px solid #c3e8a2;
+   background-color: #c3e8a2;
+   color: white;
+   transition: 200ms;
+}
+.listHead span#comment{
+   font-size: 1rem;
+   line-height: 45px;
+   color: #aaa;
+}
+.listHead > div:nth-child(1) > div{
+	display: flex;
+}
+.listHead > div:nth-child(1) > div * {
+	margin-left: 5px;
+}
+div.viewHeader{
+   border-top: 2px solid black;
+   border-bottom: 1px solid #dadada;
+   margin-bottom: 50px;
+}
+div.viewHeader > h3{
+   font-size: 1.5rem;
+}
+div#myInquiryViewMain{
+   border-top: 2px solid black;
+   border-bottom: 1px solid #dadada;
+   margin-bottom: 50px;
+}
+div.resp{
+   border-top: 1px solid #aaa;
+   margin-top: 100px;
+   padding-top: 50px;
+}
+div.resp > *{
+   width: 80%;
+   margin: 20px auto;
+}
+div.resp > div.viewHead{
+   border-bottom: none;
+   margin-bottom: 100px;
+}
+div.resp > div.viewHead > h3{
+   color: #f08080;
+   font-size: 1.5rem;
+}
+#fine{
+   width: 100%;
+   heigt: 1px;
+   border-bottom: 2px solid black;
+   margin-top: 200px;
+   display: flex;
+   
+}
+#fine a{
+	color: blue;
+	margin: 5px;
+}
+div#myInquiry span{
+   color: orangered;   
+}
+#cscInquiryWriteMain{
+   border-bottom: 2px solid black;
+}
+#cscInquiryWriteMain > div:nth-child(1){
+   width: 100%;
+   border-bottom: 2px solid black;
+}
+#cscInquiryWriteMain > div:nth-child(1) > h2{
+   height: 50px;
+   padding: 0;
+   margin: 0;
+}
+#inquiryRequest{
+   width: 600px;
+   margin: 0 auto;   
+   font-size: 1.15rem;
+   padding: 20px 0;
+}
+#inquiryRequest > *{
+   width: 100%;
+   padding: 0;
+   margin-top: 10px;
+   overflow: hidden;
+}
+.inquiryInput {
+   border: 2px solid #aaa;
+}
+.inquiryInput:nth-child(1){
+   height: 40px;
+}
+.inquiryInput:nth-child(2){
+   height: 200px;
+}
+.inquiryInput:focus-within {
+   border: 2px solid #f08080;
+}
+#inquiryRequest > div > *{
+   border: none;
+   outline: none;
+   font-size: 0.95rem;
+}
+.inquiryInput > input{
+   width: 572px;
+   padding: 0 14px;
+   height: 40px;
+   margin: auto;
+}
+.inquiryInput > textarea{
+   resize: none;
+   height: 200px;
+   width: 572px;
+   padding: 14px 14px;
+}
+
+#inquiryRequest p{
+   padding: 0;
+   margin: 50px 0;
+   width: 100%;
+   height: fit-content;
+   text-align: center;
+}
+#inquiryRequest button{
+   background-color: #aaa;
+   width: 200px;
+   border: 2px solid #aaa;
+   color: white;
+   padding: 10px;
+   border-radius: 5px;
+   outline: none;
+}
+#inquiryRequest button:hover, #inquiryRequest button:focus{
+   background-color: #f08080;
+   border: 2px solid #f08080;
+}
+.block{
+   display: block;
+}
+.none{
+   display: none;
+}
+
+
+
+
+#resbut:hover, #resbut:focus{
+	background-color: #f0a0a0;
+	border: #f0a0a0;
+}
+
+
+

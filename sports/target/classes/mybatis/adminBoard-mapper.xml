@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatst.org//DTD Mapper 3.0//EN" 
+		"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<!-- mapper의 namespace는 연결할 dao 인터페이스의 풀네임을 작성한다 -->
+<mapper namespace="com.itbank.repository.AdminBoardDAO">
+
+
+<select id="selectNoticeList" resultType="adminboard">
+	select * from adminBoard where type = 'notice' order by idx desc
+</select>
+<select id="selectFaqList" resultType="adminboard">
+	select * from adminBoard where type = 'faq' order by idx
+</select>
+<select id="selectOne" parameterType="int" resultType="adminboard">
+	select * from adminBoard where idx = #{idx}
+</select>
+<delete id="delete" parameterType="int">
+	delete adminBoard where idx = #{idx}
+</delete>
+<update id="update" parameterType="adminboard">
+	update adminBoard set title = #{title}, content = #{content} where idx = #{idx}
+</update>
+</mapper>

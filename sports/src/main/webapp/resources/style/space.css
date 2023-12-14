@@ -1,0 +1,649 @@
+@charset 'utf-8';
+
+button:hover {
+	cursor: pointer;
+}
+
+.listHead>div:nth-child(1) {
+	height: 50px;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 2px solid black;
+}
+
+.listHead>div:nth-child(1)>* {
+	padding: 0;
+	margin: 0;
+}
+
+.listHead>div:nth-child(1)>a>button {
+	height: 80%;
+	font-size: 1rem;
+	border: 1px solid #dadada;
+	background-color: white;
+	padding: 0 20px;
+}
+
+.listHead>div:nth-child(1)>a>button:hover {
+	border: 1px solid #c3e8a2;
+	background-color: #a0d0f0;
+	color: white;
+	transition: 200ms;
+}
+
+#searchForm {
+	width: 100%;
+	background-color: #50a0f0;
+	color: white;
+	padding: 10px 0px;
+	border-radius: 50px;
+	margin: 20px 0px;
+}
+
+#searchForm>table {
+	width: 600px;
+	margin: 0 auto;
+}
+
+#searchForm tr>td:nth-child(1) {
+	width: 150px;
+}
+
+#searchForm tr>td:nth-child(2) {
+	padding: 5px 0;
+}
+
+#searchForm tr:nth-child(1)>td:nth-child(1) {
+	font-size: 1rem;
+}
+
+#searchForm input, #searchForm select {
+	outline: none;
+	border: 1px solid #50a0f0;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 1rem;
+}
+
+#searchForm input:focus, #searchForm select:focus {
+	border: 1px solid #f0d0f0;
+}
+
+#searchForm>button {
+	width: 600px;
+	margin: 10px 300px;
+	padding: 5px 0px;
+	border: none;
+	background-color: #70c0f0;
+	color: white;
+	border-radius: 10px;
+}
+
+#searchForm>button:hover {
+	background-color: #a0c0f0;
+	transition: 200ms;
+	color: white;
+	border-radius: 10px;
+	box-shadow: 0 0 10px #aaa;
+}
+
+#spaceTable {
+	width: 100%;
+	border-collapse: collapse;
+	border-top: 2px solid black;
+	text-align: center;
+}
+
+#spaceTable>thead>tr>th {
+	border-bottom: 1px solid black;
+}
+
+#spaceTable>tbody>tr>td {
+	border-bottom: 1px solid #dadada;
+}
+
+#spaceTable>tbody>tr:nth-last-child(1)>td {
+	border-bottom: 2px solid black;
+}
+
+#spaceTable td, th {
+	padding: 20px 0px;
+}
+
+.toSpaceView:hover {
+	cursor: pointer;
+}
+
+#pageDiv {
+	width: 100%;
+	text-align: center;
+}
+
+#pageDiv>ul {
+	list-style: none;
+	display: inline-block;
+}
+
+#pageDiv>ul li {
+	float: left;
+	margin-left: -1px;
+	text-align: center;
+	width: 30px;
+	padding: 3px 0;
+}
+
+#pageDiv>ul li:hover {
+	text-decoration: underline;
+}
+
+.thisPage {
+	background-color: #aaa;
+	border-radius: 5px;
+	color: white;
+}
+
+/*****************이미지 시작********************/
+.imgFile>img {
+	height: 400px;
+}
+
+.img-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	margin-top: 20px;
+}
+
+.img-container img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.prev, .next {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	padding: 10px;
+	background-color: #000;
+	color: #fff;
+	border: none;
+	border-radius: 50%;
+}
+
+.prev {
+	left: 10px;
+}
+
+.next {
+	right: 10px;
+}
+/*****************이미지 끝********************/
+
+/***********가운데 내용(지도 등) 시작**************/
+
+/***********가운데 내용(지도 등) 끝**************/
+
+/*****************탭 시작*********************/
+/* 탭 스타일링 */
+.tabs {
+	display: flex;
+}
+
+.tab {
+	flex: 1;
+	padding: 10px;
+	text-align: center;
+	cursor: pointer;
+	background-color: #f2f2f2;
+}
+
+.tab.active {
+	background-color: #ccc;
+}
+
+/* 탭 내용 스타일링 */
+.tab-content {
+	display: none;
+	background-color: #eee;
+	padding: 20px;
+}
+
+.tab-content>h2 {
+	padding-top: 0px;
+	margin-top: 0px;
+}
+
+.tab-content.active {
+	display: block;
+}
+
+#revdiv {
+	margin: 20px 0;
+	width: 100%;
+	height: 600px;
+	overflow-y: scroll;
+}
+
+.spacerev {
+	background-color: #ccc;
+	padding: 20px;
+	width: 600px;
+	margin: 20px;
+	border-radius: 30px;
+}
+
+.spacerev>* {
+	padding: 5px;
+}
+
+.spacerev>span {
+	margin-left: 20px;
+}
+
+.spacerev #revdel:hover {
+	cursor: pointer;
+}
+
+.spacerev>div:nth-child(1) {
+	border-bottom: 0.5px solid #777;
+}
+/*****************탭 끝*********************/
+#supNav {
+	display: flex;
+	justify-content: space-between;
+	background-color: #a0d0f0;
+}
+
+#supNav button {
+	padding: 10px;
+	font-size: 0.8rem;
+	background-color: #70c0f0;
+	color: white;
+	border: none;
+}
+
+#supNav button:hover {
+	background-color: #50a0f0;
+}
+
+#supud {
+	display: flex;
+}
+
+#spaceBody {
+	width: 100%;
+	margin: 20px 0px;
+}
+
+#spaceInfo {
+	width: 50%;
+}
+
+#sitab th {
+	background-color: #eeee55;
+	width: 100px;
+}
+
+#sitab td {
+	background-color: #eeeeaa;
+	width: 500px;
+	padding-left: 10px;
+}
+
+#smap {
+	width: 50%;
+	padding: 0;
+	margin: 0;
+}
+
+#smap button {
+	background-color: #50a0f0;
+	width: 90%;
+	padding: 15px;
+	margin: 20px 25px;
+	border: none;
+	font-size: 1.2rem;
+	border-radius: 20px;
+	color: white;
+}
+
+#smap button:hover {
+	background-color: #70c0f0;
+	transition: 200ms;
+}
+
+.regForm {
+	width: 100%;
+	border-bottom: 2px solid black;
+	font-size: 1.1rem;
+	margin: 20px 0px;
+}
+
+.regForm input, .regForm textarea, .regForm select {
+	outline: none;
+	padding: 10px;
+	border: 3px solid #dadada;
+	font-size: 1rem;
+}
+
+.regForm input:focus, .regForm textarea:focus, .regForm select:focus {
+	border: 3px solid #a0c0f0;
+}
+
+.regForm input {
+	width: 300px;
+}
+
+.regForm input[type="submit"] {
+	color: white;
+	background-color: #bbb;
+}
+
+.regForm input[type="submit"]:focus {
+	background-color: #a0c0f0;
+}
+
+.regForm input[type="submit"]:hover {
+	background-color: #a0c0f0;
+	cursor: pointer;
+}
+
+.regForm input[type="button"]:hover {
+	cursor: pointer;
+}
+
+.regForm input[type="checkbox"] {
+	width: 20px;
+}
+
+.regForm textarea {
+	width: 500px;
+	resize: none;
+	height: 250px;
+}
+
+#regtb {
+	width: 900px;
+}
+
+#regtb td {
+	width: 200px;
+}
+
+#regtb tr {
+	border: 3px solid #dadada;
+	padding: 5px 0px;
+}
+
+#holtb {
+	width: 100%;
+	font-size: 1.1rem;
+	border-collapse: collapse;
+}
+
+#holtb th {
+	background-color: #eeee33;
+}
+
+#holtb td {
+	background-color: #eeeeaa;
+}
+
+#holtb td:nth-child(1) {
+	width: 200px;
+	padding: 10px;
+	text-align: center;
+}
+
+#holtb th:nth-child(2) {
+	border-left: 2px solid white;
+}
+
+#holtb td:nth-child(2) {
+	padding: 10px;
+	border-left: 2px solid white;
+}
+
+#holtb td:nth-child(3) {
+	padding: 10px;
+	width: 50px;
+	font-size: 1.3rem;
+	text-align: center;
+}
+
+#restb {
+	margin-bottom: 20px;
+}
+
+#restb td:nth-child(1) {
+	width: 200px;
+	padding: 20px;
+	text-align: center;
+}
+
+#revForm {
+	width: 100%;
+	border-bottom: 2px solid black;
+	font-size: 1.1rem;
+	margin: 20px 0px;
+	padding-bottom: 20px;
+}
+
+#revForm input, #revForm textarea {
+	outline: none;
+	padding: 10px;
+	border: 3px solid #dadada;
+	font-size: 1rem;
+}
+
+#revForm input:focus, #revForm textarea:focus {
+	border: 3px solid #a0c0f0;
+}
+
+#revForm input {
+	/* 	width: 300px; */
+	
+}
+
+#revForm input[type="submit"] {
+	color: white;
+	background-color: #bbb;
+}
+
+#revForm input[type="submit"]:focus {
+	background-color: #a0c0f0;
+}
+
+#revForm input[type="submit"]:hover {
+	background-color: #a0c0f0;
+	cursor: pointer;
+}
+
+#revForm textarea {
+	width: 500px;
+	resize: none;
+	height: 250px;
+}
+
+#revtb {
+	width: 900px;
+}
+
+#revtb td:nth-child(1) {
+	width: 100px;
+	padding: 20px;
+}
+
+#revtb tr {
+	border: 3px solid #dadada;
+	padding: 5px 0px;
+}
+
+.tabHead {
+	width: 100%;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	padding: 30px 0px;
+}
+
+form#sendMessageMain {
+	width: 100%;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+}
+
+#sendMessageMain>table {
+	width: 600px;
+	margin: 30px auto;
+	margin-bottom: 10px;
+	font-size: 1.1rem;
+}
+
+.tname {
+	width: 100px;
+	padding: 10px 0px;
+}
+
+.tval {
+	width: 500px;
+	padding: 10px 0px;
+	border: 1px solid #dadada;
+}
+
+.tval:focus-within {
+	border: 1px solid #f08080;
+}
+
+.tval>input {
+	width: 95%;
+	margin: 0 auto;
+	margin-left: 10px;
+	outline: none;
+	border: none;
+	font-size: 1.05rem;
+}
+
+.tval>textarea {
+	width: 95%;
+	height: 300px;
+	margin: 0 auto;
+	margin-left: 10px;
+	outline: none;
+	border: none;
+	font-size: 1.05rem;
+	resize: none;
+}
+
+#sendMessageMain button {
+	width: 500px;
+	margin: 0 400px;
+	margin-bottom: 30px;
+	margin-left: 380px;
+	padding: 10px 0;
+	border: none;
+	background-color: #dadada;
+}
+
+#sendMessageMain button:focus, #sendMessageMain button:hover {
+	background-color: #f08080;
+	color: white;
+	outline: none;
+	cursor: pointer;
+}
+
+/* 기본 스타일 */
+.content-row {
+	display: none;
+}
+
+/* 제목을 클릭했을 때 내용 표시 스타일 */
+.content-row.show-content {
+	display: table-row;
+}
+
+.facilityTitle {
+	cursor: pointer;
+	text-decoration: underline;
+	color: blue;
+}
+
+#nottb {
+	width: 100%;
+}
+
+#nottb tr td {
+	text-align: center;
+	padding: 10px;
+}
+
+#nottb tr td:nth-child(1) {
+	width: 900px;
+	color: black;
+	text-decoration: none;
+}
+
+#nottb thead tr {
+	background-color: #ccc;
+}
+
+#nottb td.content {
+	background-color: #ddd;
+}
+
+#nottb td.content pre {
+	width: 90%;
+	margin-bottom: 20px;
+	padding: 20px;
+	text-align: left;
+}
+
+.holtb {
+	width: 100%;
+	font-size: 1.1rem;
+	border-collapse: collapse;
+}
+
+.holtb th {
+	background-color: #eeee33;
+	width: 300px;
+}
+
+.holtb td {
+	background-color: #eeeeaa;
+}
+
+.holtb td:nth-child(1) {
+	width: 300px;
+	padding: 10px;
+	text-align: center;
+}
+
+.holtb th:nth-child(2) {
+	border-left: 2px solid white;
+}
+
+.holtb td:nth-child(2) {
+	width: 300px;
+	width: 300px;
+	padding: 10px;
+	text-align: center;
+	border-left: 2px solid white;
+}
+#reserveCh{
+	margin: 20px 50px 20px 20px;
+}
+#total {
+	font-size: 1.3rem;
+}
+
+#pay {
+	width: 300px;
+	padding: 10px;
+	color: white;
+	background-color: #50a0f0;
+	border: none;
+	font-size: 1.1rem;
+	margin: 20px 0;
+}

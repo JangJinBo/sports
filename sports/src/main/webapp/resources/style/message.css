@@ -1,0 +1,189 @@
+@charset 'utf-8';
+.listHead > div:nth-child(1){
+   height: 50px;
+   display: flex;
+   justify-content: space-between;
+}
+.listHead > div:nth-child(1) > *{
+   padding: 0;
+   margin: 0;
+}
+.listHead > div:nth-child(1) > a > button{
+   height: 80%;
+   font-size: 1rem;
+   border: 1px solid #dadada;
+   background-color: white;
+   padding: 0 20px;
+}
+.listHead > div:nth-child(1) > a > button:hover{
+   border: 1px solid #c3e8a2;
+   background-color: #c3e8a2;
+   color: white;
+   transition: 200ms;
+   cursor: pointer;
+}
+#messageListMain{
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	display: flex;
+	width: 100%;
+	height: 500px;
+	position: relative;
+}
+#messageListMain > div:nth-child(1){
+	width: 355px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	background-color: #aaa;
+}
+#messageSelector::-webkit-scrollbar {
+	width: 5px;
+}
+#messageSelector::-webkit-scrollbar-thumb {
+	background-color: #dadada;
+	border: none;
+}
+#messageSelector::-webkit-scrollbar-track {
+	opacity: 0;
+}
+#messageListMain > div > div.selector:hover{
+	background-color: #555;
+	transition: 30ms;
+}
+div.selector:hover{
+	cursor: pointer;
+}
+#messageListMain > div:nth-child(1) p:nth-child(1){
+	font-size: 1.1rem;
+	width: 330px;
+	margin: 0px auto;
+	padding-top: 10px	
+}
+#messageListMain > div:nth-child(1) p > span{
+	font-weight: bold;
+	padding-right: 10px;
+}
+#messageListMain > div:nth-child(1) p:nth-child(2){
+	font-size: 0.9rem;
+	width: 330px;
+	margin: 0 auto;
+	padding-bottom: 10px;
+}
+.checker{
+	color: orangered;
+	font-size: 0.6rem;
+}
+
+.messageView{
+	width: 845px;
+	height: 500px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	background-color: white;
+	overflow-y: auto;
+	overflow-x: hidden;
+	border-right: 1px solid #ddd;
+}
+.messageView *{
+	padding-left: 20px;
+}
+.messageView h4{
+	font-size: 1.3rem;
+	margin: 0;
+	padding-top: 20px;
+	background-color: #eee;
+}
+.messageView div{
+	background-color: #eee;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.messageView p {
+	background-color: e5e5e5;
+}
+.none{
+	display: none;
+}
+.block{
+	display: block;
+}
+.selected{
+	background-color: white;
+}
+.trashcan:hover{
+	cursor: pointer;
+}
+
+form#sendMessageMain{
+	width: 100%;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+}
+#sendMessageMain > table{
+	width: 600px;
+	margin: 30px auto;
+	margin-bottom: 10px;
+	font-size: 1.1rem;
+}
+.tname {
+	width: 100px;
+	padding: 10px 0px;
+}
+.tval {
+	width: 500px;
+	padding: 10px 0px;
+	border: 1px solid #dadada;
+}
+.tval:focus-within {
+	border: 1px solid #f08080;
+}
+.tval > input {
+	width: 95%;
+	margin: 0 auto;
+	margin-left: 10px;
+	outline: none;
+	border: none;
+	font-size: 1.05rem;
+}
+.tval > textarea {
+	width: 95%;
+	height: 300px;
+	margin: 0 auto;
+	margin-left: 10px;
+	outline: none;
+	border: none;
+	font-size: 1.05rem;
+	resize: none;
+}
+#sendMessageMain button{
+	width: 500px;
+	margin: 0 400px;
+	margin-bottom: 30px;
+	padding: 10px 0;
+	border: none;
+	background-color: #dadada;
+}
+#sendMessageMain button:focus, #sendMessageMain button:hover{
+	background-color: #f08080;
+	color: white;
+	outline: none;
+	cursor: pointer;
+}
+#resbtn{
+	margin-left: 720px; 
+	padding: 5px 10px; 
+	background-color: #bbb; 
+	border: none; 
+	color: white;
+	border-radius: 5px;
+}
+#resbtn:hover{
+	cursor: pointer;
+	background-color: #ddd;
+}
+
+
+
+
+

@@ -1,0 +1,98 @@
+@charset 'utf-8';
+body{
+   padding: 0;
+   margin: 0;
+   overflow-y: scroll;   
+}
+a{
+    all: unset;
+    cursor: pointer;
+    color: inherit;
+}
+.homeBtn{
+   text-align: center;
+}
+#clock{
+   font-size: 0.8rem;
+}
+.sb{
+    display: flex;
+    justify-content: space-between;
+}
+ul{
+   padding: 10px;
+   list-style: none;
+}
+header, #home{
+    width: 1200px;
+    margin: auto;
+}
+#center{
+   margin: auto;
+}
+.CBT{
+    width: 550px;
+    height: 400px;
+    text-align: center;
+    line-height: 400px;
+    font-size: 2.5rem;
+    
+}
+
+#center > div{
+    display: flex;
+    justify-content: center;
+}
+
+#center > div:first-child{
+    margin-right: 0;
+}
+
+#menu{
+   border: 1px dashed blue;
+}
+#menu > li{
+   position: relative;
+   border: 1px dashed purple;
+   width: 250px;
+   text-align: center;
+   height: 80px;
+   line-height: 80px;
+   font-size: 1.5rem;
+}
+.drop{
+   box-sizing:border-box;
+   position: absolute;
+   border: 1px dashed red;
+   display: none;
+
+}
+
+#menu > li:hover > .drop{
+   display: block;
+}
+.drop > li{
+   border: 1px dashed SKYblue;
+   background-color: white;
+   z-index: 500;
+      width: 250px;
+}
+
+.homeBtn > #member{
+   border: 1px dashed red;
+   display: flex;
+   margin-left: 900px;
+}
+.frame{
+   width: 1200px;
+   margin: 0 auto;
+}
+footer{
+      margin-top: 100px;
+      width: 100%;
+      height: 500px;
+      background-color: #555;
+}
+#login div:first-child{
+	margin-right: 10px;
+}

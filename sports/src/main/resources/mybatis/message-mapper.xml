@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatst.org//DTD Mapper 3.0//EN" 
+		"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<!-- mapper의 namespace는 연결할 dao 인터페이스의 풀네임을 작성한다 -->
+<mapper namespace="com.itbank.repository.MessageDAO">
+
+	<select id="selectMyMessage" parameterType="string" resultType="message">
+		select * from message where receiverId = #{receiverId} order by idx desc
+	</select>
+	
+	<insert id="sendMessage" parameterType="message">
+		insert into message 
+			(
+				receiverId,
+				title,
+				content,
+				sendId,
+				banned
+			)
+			values
+			(
+				#{receiverId},
+				#{title},
+				#{content},
+				#{sendId},
+				0
+			)
+	</insert>
+	
+	<insert id="sendBannedMessage" parameterType="message">
+		insert into message 
+			(
+				receiverId,
+				title,
+				content,
+				sendId,
+				banned
+			)
+			values
+			(
+				'admin',
+				#{title},
+				#{content},
+				#{sendId},
+				1
+			)
+	</insert>
+	<insert id="sendSuppBannedMessage" parameterType="message">
+		insert into message 
+			(
+				receiverId,
+				title,
+				content,
+				sendId,
+				banned
+			)
+			values
+			(
+				'admin',
+				#{title},
+				#{content},
+				#{sendId},
+				2
+			)
+	</insert>
+	
+	<delete id="deleteMessage" parameterType="int">
+		delete message where idx = #{idx}
+	</delete>
+	
+	<update id="readMessage" parameterType="int">
+		update message set counter = 'read' where idx = #{idx}
+	</update>
+	
+	<select id="messageCounter" parameterType="string" resultType="int">
+		select count(counter) from message where counter = 'unread' and receiverId = #{receiverId}
+	</select>
+</mapper>

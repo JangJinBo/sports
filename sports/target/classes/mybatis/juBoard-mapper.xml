@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatst.org//DTD Mapper 3.0//EN" 
+		"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<!-- mapper의 namespace는 연결할 dao 인터페이스의 풀네임을 작성한다 -->
+<mapper namespace="com.itbank.repository.JuDAO">
+
+
+	<!-- 팀업 게시판 글 작성 시 우선 board 테이블 부터 생성하는 구문 -->
+
+	<insert id="juInsert" parameterType="com.itbank.model.BoardDTO">
+		insert into board 
+			(
+				member_idx,
+				boardType
+			) 
+		values 
+			(
+				#{member_idx},
+				#{boardType}
+			)
+	</insert>
+	
+	<!-- 팀업 게시판 글 작성시 juBoard 테이블 만드는 구문 -->
+	
+	<insert id="tmInsert" parameterType="juBoard">
+		insert into juBoard( board_idx, title, gender, age, content, category, mainarea)
+	    	values
+	        	(${board_idx}, #{title}, #{gender}, #{age}, #{content}, #{category}, #{mainarea})
+	</insert>
+	
+	<!-- 팀 매칭 게시판 글 작성시 matchBoard 테이블 만드는 구문 -->
+	
+	<insert id="mtchInsert" parameterType="matchBoard">
+		insert into matchBoard 
+			(
+			juBoard_idx, 
+			place, 
+			schedule
+			)
+		values
+			(
+				#{juBoard_idx}, 
+				#{place}, 
+				#{schedule}
+			)
+	</insert>
+	
+	<!-- 용병 게시판 글 작성시 substiBoard 테이블 만드는 구문 -->
+	
+	<insert id="sbtiInsert" parameterType="substiBoard">
+		insert into substiBoard 
+			(
+			juBoard_idx,
+			joinPrice, 
+			place, 
+			schedule
+			)
+		values
+			(
+				#{juBoard_idx},
+				#{joinPrice}, 
+				#{place}, 
+				#{schedule}
+			)
+	</insert>
+	
+	<!-- 파티 게시판 글 작성시 patryBoard 테이블 만드는 구문 -->
+	
+	<insert id="ptyInsert" parameterType="partyBoard">
+		insert into partyBoard 
+			(
+			juBoard_idx,
+			maxCapacity, 
+			place, 
+			schedule
+			)
+		values
+			(
+				#{juBoard_idx},
+				#{maxCapacity}, 
+				#{place}, 
+				#{schedule}
+			)
+	</insert>
+	
+	<!-- board 테이블의 가장 최신의 인덱스값 넘겨주기 -->
+	
+	<select id="selectBoardMaxIdx" resultType="int">
+		select max(idx) from board
+	</select>
+	
+	<!-- juBoard 테이블의 가장 최신의 인덱스값 넘겨주기 -->
+	
+	<select id="selectJuBoardMaxIdx" resultType="int">
+		select max(idx) from juBoard
+	</select>
+	
+	<!-- matchBoard 테이블의 가장 최신의 인덱스값 넘겨주기 -->
+	
+	<select id="selectMtchBoardMaxIdx" resultType="int">
+		select max(idx) from matchBoard
+	</select>
+	
+	<!-- substiBoard 테이블의 가장 최신의 인덱스값 넘겨주기 -->
+	
+	<select id="selectSbtiBoardMaxIdx" resultType="int">
+		select max(idx) from substiBoard
+	</select>
+	
+	<!-- partyBoard 테이블의 가장 최신의 인덱스값 넘겨주기 -->
+	
+	<select id="selectPtyBoardMaxIdx" resultType="int">
+		select max(idx) from partyBoard
+	</select>
+	
+	<!-- juBoard 테이블내에서 boardType이 teamBoard(팀원모집)인 게시글만 불러오기 -->
+	
+	<select id="selectTm" resultType="juBoard">
+		select	
+			m.username,
+			m.userid,
+			b.boardType,
+			b.wdate,
+			j.idx,
+			j.title,
+			j.gender,
+			j.age,
+			j.content,
+			j.category,
+			j.mainarea 
+		from juboard j
+	    join board b
+			on j.board_idx = b.idx
+	    join member m
+	        on b.member_idx = m.idx 
+		where 
+			b.boardType = 'teamBoard'
+		order by
+			 j.idx desc
+	</select>
+	
+	<!-- juBoard 테이블내에서 boardType이 substiBoard(용병모집)인 게시글만 불러오기 -->
+	
+	<select id="selectSb" resultType="substiBoard">
+		select
+			m.username,
+			m.userid,
+			b.boardType,
+			b.wdate,
+			j.title,
+			j.gender,
+			j.age,
+			j.content,
+			j.category,
+			j.mainarea,
+			s.idx,
+			s.joinPrice,
+			s.place,
+			s.schedule
+		from substiBoard s
+		join juBoard j
+			on s.juBoard_idx = j.idx
+		join board b
+			on j.board_idx = b.idx
+	    join member m
+	        on b.member_idx = m.idx  
+		where 
+			b.boardType = 'substiBoard'
+		order by
+			s.idx desc
+	</select>
+	
+	<!-- juBoard 테이블내에서 boardType이 matchBoard(팀 매칭)인 게시글만 불러오기 -->
+	
+	<select id="selectMt" resultType="matchBoard">
+		select
+			m.username,
+			m.userid,
+			b.boardType,
+			b.wdate,
+			j.title,
+			j.gender,
+			j.age,
+			j.content,
+			j.category,
+			j.mainarea,
+			c.idx,
+			c.place,
+			c.schedule
+		from matchBoard c
+		join juBoard j
+			on c.juBoard_idx = j.idx
+		join board b
+			on j.board_idx = b.idx
+	    join member m
+	        on b.member_idx = m.idx  
+		where 
+			b.boardType = 'matchBoard'
+		order by
+			c.idx desc
+	</select>
+	
+	<!-- juBoard 테이블내에서 boardType이 partyBoard(파티 모집)인 게시글만 불러오기 -->
+	
+	<select id="selectPt" resultType="partyBoard">
+		select
+			m.username,
+			m.userid,
+			b.boardType,
+			b.wdate,
+			j.title,
+			j.gender,
+			j.age,
+			j.content,
+			j.category,
+			j.mainarea,
+			p.idx,
+			p.place,
+			p.schedule,
+			p.maxCapacity
+		from partyBoard p
+		join juBoard j
+			on p.juBoard_idx = j.idx
+		join board b
+			on j.board_idx = b.idx
+	    join member m
+	        on b.member_idx = m.idx  
+		where 
+			b.boardType = 'partyBoard'
+		order by
+			p.idx desc
+	</select>
+	
+	<!-- 팀원 모집 게시글 중 게시글 하나 불러오기 -->
+	
+	<select id="selectTmOne" parameterType="int" resultType="juBoard">
+		select
+			m.username,
+			m.userid,
+			b.boardType,
+			b.member_idx,
+			b.wdate,
+			j.board_idx,
+			j.idx,
+			j.title,
+			j.gender,
+			j.age,
+			j.content,
+			j.category,
+			j.mainarea
+		from juBoard j
+		join board b
+			on j.board_idx = b.idx
+		join member m
+             	on b.member_idx = m.idx 
+		where j.idx = #{idx}
+	</select>
+	
+	<!-- 팀매칭 게시글 중 게시글 하나 불러오기 -->
+	
+	<select id="selectMtchOne" parameterType="int" resultType="matchBoard">
+		select 
+			m.username,
+			m.userid,
+			b.boardType,
+			b.member_idx,
+			b.wdate,
+			c.idx,
+			c.juboard_idx,
+			j.board_idx,
+			j.title,
+			j.gender,
+			j.age,
+			j.content,
+			j.category,
+			j.mainarea,
+			c.place,
+			c.schedule
+			from matchBoard c
+			join juBoard j
+				on c.juboard_idx = j.idx
+			join board b
+				on j.board_idx = b.idx
+			join member m
+             	on b.member_idx = m.idx 
+			where
+				c.idx = #{idx}
+	</select>
+	
+	<!-- 용병 모집 게시글 중 게시글 하나 불러오기 -->
+	
+	<select id="selectSbtiOne" parameterType="int" resultType="substiBoard">
+		select 
+			m.username,
+			m.userid,
+			b.boardType,
+			b.member_idx,
+			b.wdate,
+			s.idx,
+			s.juboard_idx,
+			j.board_idx,
+			j.title,
+			j.gender,
+			j.age,
+			j.content,
+			j.category,
+			j.mainarea,
+			s.joinPrice,
+			s.place,
+			s.schedule
+			from substiBoard s
+			join juBoard j
+				on s.juboard_idx = j.idx
+			join board b
+				on j.board_idx = b.idx
+			join member m
+             	on b.member_idx = m.idx 
+			where
+				s.idx = #{idx}
+	</select>
+	
+	<!-- 파티 모집 게시글 중 게시글 하나 불러오기 -->
+	
+	<select id="selectPtyOne" parameterType="int" resultType="partyBoard">
+		select 
+			m.username,
+			m.userid,
+			b.boardType,
+			b.member_idx,
+			b.wdate,
+			p.idx,
+			p.juboard_idx,
+			j.board_idx,
+			j.title,
+			j.gender,
+			j.age,
+			j.content,
+			j.category,
+			j.mainarea,
+			p.place,
+			p.schedule,
+			p.maxCapacity
+			from partyBoard p
+			join juBoard j
+				on p.juboard_idx = j.idx
+			join board b
+				on j.board_idx = b.idx
+			join member m
+             	on b.member_idx = m.idx 
+			where
+				p.idx = #{idx}
+	</select>
+	
+	<!-- juBoard에서 board_idx 선택하기(juBoard 테이블의 게시글 삭제전 board테이블의 인덱스값 저장하기 위해) -->
+	
+	<select id="selBdidxJu" resultType="int">
+		select board_idx from juBoard where idx = #{idx}
+	</select>
+	
+	<!-- juboard 테이블 내에 게시글 하나 삭제하기 -->
+	
+	<delete id="deleteJuBoard" parameterType="int">
+		delete juBoard where idx = #{idx}
+	</delete>
+	
+	<!-- board에서 해당 게시글 내용 삭제 마무리 -->
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete board where idx = #{idx}
+	</delete>
+	
+	<!-- 팀매칭 게시글 삭제전 juBoard의 인덱스값 저장하기 -->
+	
+	<select id="selJuidxMt" resultType="int">
+		select juBoard_idx from matchBoard where idx = #{idx}
+	</select>
+	
+	<!-- 팀매칭 게시글 하나 삭제하기 -->
+	
+	<delete id="deleteMtBoard" parameterType="int">
+		delete matchBoard where idx = #{idx}
+	</delete>
+	
+	<!-- 용병 모집 게시글 삭제전 juBoard의 인덱스값 저장하기 -->
+	
+	<select id="selJuidxSb" resultType="int">
+		select juBoard_idx from substiBoard where idx = #{idx}
+	</select>
+	
+	<!-- 용병 모집 게시글 하나 삭제하기 -->
+	
+	<delete id="deleteSbBoard" parameterType="int">
+		delete substiBoard where idx = #{idx}
+	</delete>
+	
+	<!-- 파티 모집 게시글 삭제전 juBoard의 인덱스값 저장하기 -->
+	
+	<select id="selJuidxPt" resultType="int">
+		select juBoard_idx from partyBoard where idx = #{idx}
+	</select>
+	
+	<!-- 파티 모집 게시글 하나 삭제하기 -->
+	
+	<delete id="deletePtBoard" parameterType="int">
+		delete partyBoard where idx = #{idx}
+	</delete>
+	
+	<!-- fileList 테이블에 첨부파일 업로드 -->
+	
+	<insert id="insertJuFile" parameterType="filelist">
+			insert into fileList (board_idx, fileName) 
+				values 
+					(${board_idx}, #{fileName})
+	</insert>
+	
+	<!-- 첨부파일 파일이름 선택하기 -->
+	
+	<select id="selectFileName" resultType="string" parameterType="int">
+		select filename from filelist where board_idx = #{idx}
+	</select>
+	
+	<!-- 파일리스트 전체 불러오기 -->
+	
+	<select id="selectFileListByIdx" resultType="filelist" parameterType="int" >
+		select * from filelist where board_idx = ${board_idx}
+	</select>
+	
+	<!-- db내의 파일 삭제 -->
+	
+	<delete id="deleteFileList" parameterType="hashmap">
+		delete fileList where fileName = #{fileName} and board_idx = #{board_idx}
+	</delete>
+	
+	<!-- juBoard 테이블 내부의 게시 내용 수정하기 -->
+	
+	<update id="selectTmOneMd" parameterType="juBoard" >
+		update juBoard
+			set
+				title = #{title}, 
+				gender = #{gender}, 
+				age = #{age}, 
+				content = #{content}, 
+				category = #{category}, 
+				mainarea = #{mainarea}	
+			where 
+				idx = #{idx}
+	</update>
+	
+	<!-- matchBoard 테이블 내부의 게시 내용 수정하기 -->
+	
+	<update id="selectMtOneMd" parameterType="matchBoard">
+		update matchBoard
+			set 
+				place = #{place},
+				schedule = #{schedule}
+			where 
+				idx = #{idx}
+	</update>
+	
+	<!-- substiBoard 테이블 내부의 게시 내용 수정하기 -->
+	
+	<update id="selectSbOneMd" parameterType="substiBoard">
+		update substiBoard
+			set
+				joinPrice = #{joinPrice},
+				place = #{place},
+				schedule = #{schedule}
+			where
+				idx = #{idx}
+	</update>
+	
+	<!-- partyBoard 테이블 내부의 게시 내용 수정하기 -->
+	
+	<update id="selectPtOneMd" parameterType="partyBoard">
+		update partyBoard
+			set
+				place = #{place},
+				schedule = #{schedule},
+				maxCapacity = #{maxCapacity}
+			where
+				idx = #{idx}
+	</update>
+	
+	<!-- 리뷰 리스트 불러오기 -->
+	
+	<select id="selectReviewByIdx" resultType="review" parameterType="int">
+		select 
+		r.content, 
+		r.idx,
+		m.nickname,
+		m.userid,
+		m.username
+		from review r 
+			join board b
+				on r.board_idx = b.idx
+			join member m
+				on r.member_idx = m.idx
+				where r.board_idx = #{board_idx}
+				order by r.idx
+	</select>
+	
+	<!-- 유저 아이디 찾기 -->
+	
+	<select id="selectMemIdx" resultType="int" parameterType="string">
+		select idx from member where userid = #{userid}
+	</select>
+	
+	<!-- 댓글 생성 하기 -->
+	
+	<insert id="mkReview" parameterType="review">
+		insert into review
+			(
+			board_idx,
+			member_idx,
+			content
+			)
+		values
+			(
+				#{board_idx},
+				#{member_idx},
+				#{content}
+			) 
+	</insert>
+	
+	<!-- 댓글 생성 후 idx 찾기 (boardtype 찾은 후 boardtype에 따라 알맞은 보드의 idx 뽑기) -->
+	
+	<select id="selectBoardType" resultType="string" parameterType="int">
+		select boardtype from board where idx = #{idx}
+	</select>
+	
+	<select id="selJuIdx" resultType="int">
+		select idx from juboard where board_idx = #{board_idx}
+	</select>
+	
+	<select id="selSbIdx" resultType="int">
+		select idx from substiboard where juboard_idx = #{juboard_idx}
+	</select>
+	
+	<select id="selPtIdx" resultType="int">
+		select idx from partyboard where juboard_idx = #{juboard_idx}
+	</select>
+	<select id="selMtIdx" resultType="int">
+		select idx from matchboard where juboard_idx = #{juboard_idx}
+	</select>
+	
+	<delete id="delReview" parameterType="int">
+		delete review where idx = #{idx}
+	</delete>
+</mapper>

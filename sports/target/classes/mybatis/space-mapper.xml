@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatst.org//DTD Mapper 3.0//EN" 
+		"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<!-- mapper의 namespace는 연결할 dao 인터페이스의 풀네임을 작성한다 -->
+<mapper namespace="com.itbank.repository.SpaceDAO">
+
+<!-- register 시작 -->
+	<!-- space등록시 board table 등록 -->
+	<insert id="insertBoard" parameterType="int">	
+		insert into board (member_idx, boardType)
+			values (#{member_idx}, 'space')
+	</insert>
+	
+	<!-- space등록시 board table 등록 후 board_idx에 넣을 idx 받아오기-->
+	<select id="selectBoardMaxIdx" resultType="int">
+		select max(idx) from board
+	</select>
+
+	<!-- space등록시 address table 등록 -->
+	<insert id="insertAddress" parameterType="hashmap">
+		insert into address (member_idx, location, addX, addY, addressType)
+			 values (${member_idx}, #{location}, ${addX}, ${addY}, 2)
+	</insert>
+
+	<!-- space등록시 address table 및 space table 등록 실패 시 board table 삭제  -->
+	<delete id="deleteBoard" parameterType="int">
+		delete board where idx = ${idx}
+	</delete>
+	
+	<!-- space등록시 address table 등록 후 address_idx에 넣을 idx 받아오기 -->
+	<select id="selectAddressMaxIdx" resultType="int">
+		select max(idx) from address
+	</select>
+
+	<!-- space등록 -->
+	<insert id="register" parameterType="hashmap">
+		insert into space(address_idx, board_idx, spaceName, area, openTime, closeTime, park, price, guide, spaceCategory, region)
+	    	values
+	        	(${address_idx}, ${board_idx}, #{spaceName}, #{area}, #{openTime}, #{closeTime}, #{park}, #{price}, #{guide}, #{spaceCategory}, #{region})
+	</insert>
+
+	<!-- space등록 실패 시 address table 삭제 -->
+	<delete id="deleteAddress" parameterType="int">
+		delete address where idx = ${idx}
+	</delete>
+
+	<!-- space등록시 파일 등록 -->
+	<insert id="insertFile" parameterType="filelist">
+		insert into fileList (board_idx, fileName) 
+			values 
+				(${board_idx}, #{fileName})
+	</insert>
+	
+	<!-- space등록 후 등록된 space의 view를 불러오기 위한 idx -->
+	<select id="selectSpaceMaxIdx" resultType="int">
+		select max(idx) from space
+	</select>
+<!-- register 끝 -->	
+
+<!-- list 시작 -->
+	<!-- 비 로그인 시 List<SpaceDTO> 불러오기 -->
+	<select id="selectList" resultType="space">
+		select 
+	    S.*,
+        (select avg(score) from review where S.board_idx = review.board_idx) as rate,
+        (select count(idx) from reserve where reserve.status = 1 and S.idx = reserve.space_idx) as count
+	    from 
+	        space S
+	        join board B
+	            on B.idx = S.board_idx 
+                join address A
+                on a.idx = S.address_idx
+                    order by count desc
+	</select>
+	
+	<!-- 로그인 시 위도 경도 불러오기(거리 순 리스트) -->
+	<select id="selectAddressByIdx" parameterType="int" resultType="address">
+		select * from address where member_idx = ${idx} and addressType = 1
+	</select>
+	
+	<!-- 불러온 위도 경도로 List<SpaceDTO> 불러오기 -->
+	<select id="selectListByAddressDTO" parameterType="address" resultType="space">
+		select 
+		S.*,
+        round(DISTANCE_WGS84(
+            #{addY},
+            #{addX},
+            A.addY, A.addX), 3) as distance,
+            (select avg(score) from review where s.board_idx = review.board_idx) as rate,
+            (select idx from scrap where scrap.space_idx = S.idx and scrap.member_idx = #{member_idx}) as favorites
+                from 
+                    space S
+                    join address A
+                        on a.idx = S.address_idx
+                    join board B
+                        on B.idx = S.board_idx
+                    join member M
+                        on B.member_idx = M.idx where A.addressType = 2
+                    order by distance
+	</select>
+	
+	<select id="selectCategoryList" resultType="String">
+		select spaceCategory from space
+	</select>
+<!-- list 끝 -->
+	
+	
+<!-- view 시작 -->
+	<!-- view에 불러올 SpaceDTO 가져오기 -->
+	<select id="selectOneByIdx" parameterType="int" resultType="space">
+		select 
+	    S.*,
+        (select avg(score) from review where s.board_idx = review.board_idx) as rate
+	    from 
+	        space S
+                    where S.idx = ${idx}
+	</select>
+
+	<!-- view에서 작성자를 불러올 BoardDTO 가져오기 -->
+	<select id="selectBoardByIdx" parameterType="int" resultType="board">
+		select * from board where idx = ${board_idx}
+	</select>
+	
+	<select id="selectMemberByIdx" parameterType="int" resultType="member">
+		select * from member where idx = ${idx}
+	</select>
+	
+	<!-- view에 불러올 AddressDTO 가져오기 -->
+	<select id="selectSpaceAddressByIdx" parameterType="int" resultType="address">
+		select * from address where idx = ${idx}
+	</select>
+	
+	<!-- view에 불러올 List<FilelistDTO> 가져오기 -->
+	<select id="selectFileListByIdx" parameterType="int" resultType="filelist">
+		select * from filelist where board_idx = ${board_idx} order by idx
+	</select>
+	
+	<!-- view에 불러올 List<ReviewDTO> 가져오기 -->
+	<select id="selectReviewListByIdx" parameterType="int" resultType="review">
+		select R.*,
+			M.nickName
+		 from review R
+    		join member M
+    			on R.member_idx = M.idx 
+    			where R.board_idx = ${board_idx} order by R.idx desc
+	</select>
+	
+	<select id="selectFacilityListBySpaceIdx" parameterType="int" resultType="facility">
+		select * from facility where space_idx = ${space_idx} order by idx desc
+	</select>
+<!-- view 끝 -->
+
+<!-- toggleScrap 시작 -->
+	<!-- scrap table에 등록 되어있는지 확인(값이 반환되면 즐겨찾기 되어 있음) -->
+	<select id="selectScrapByIdx" parameterType="hashmap" resultType="int">
+		select count(idx) from scrap where member_idx = ${member_idx} and space_idx = ${space_idx}
+	</select>
+	
+	<!-- scrap table 등록 -->
+	<insert id="insertScrap" parameterType="hashmap">
+		insert into scrap (member_idx, space_idx) values (${member_idx}, ${space_idx})
+	</insert>
+	
+	<!-- scrap table 삭제 -->
+	<delete id="deleteScrap" parameterType="hashmap">
+		delete scrap where member_idx = ${member_idx} and space_idx = ${space_idx}
+	</delete>
+<!-- toggleScrap 끝 -->
+	
+	
+<!-- delete 시작 -->
+	<!-- board_idx 불러오기 -->
+	<select id="selectspaceBoardIdx" parameterType="int" resultType="int">
+		select board_idx from space where idx = ${idx}
+	</select>
+	
+	<!-- address_idx 불러오기 -->
+	<select id="selectAddressIdx" parameterType="int" resultType="int">
+		select address_idx from space where idx = ${idx}
+	</select>
+	
+	<!-- space에 예약된  -->
+	<select id="selectReserveForDelete" parameterType="int" resultType="int">
+		select count(idx) from reserve 
+			where space_idx = ${space_idx} and status = 1 and endTime >= TO_date(SYSDATE, 'YYYY-MM-DD HH24:MI')
+	</select>
+	
+	<select id="selectFileName" parameterType="int" resultType="String">
+		select fileName from fileList where board_idx = ${idx}
+	</select>
+	
+	<delete id="deleteholidayBySpaceIdx" parameterType="int">
+		delete reserve where space_idx = ${space_idx} and status = 0
+	</delete>
+<!-- delete 끝 -->
+
+<!-- modify 시작 -->
+	<delete id="deleteFileList" parameterType="hashmap">
+		delete fileList where fileName = #{fileName} and board_idx = #{board_idx}
+	</delete>
+
+	<select id="selectOneByspaceIdx" parameterType="int" resultType="space">
+		select * from space where idx = #{space_idx}
+	</select>
+	
+	<update id="updateAddress" parameterType="hashmap">
+		update address set location = #{location}, addX = #{addX}, addY = #{addY} where idx = #{address_idx}
+	</update>
+	
+	<update id="updateSpace" parameterType="hashmap">
+		update space set 
+			spaceName = #{spaceName}, 
+			area = #{area}, 
+			openTime = #{openTime}, 
+			closeTime = #{closeTime}, 
+			park = #{park}, 
+			price = #{price}, 
+			guide = #{guide}, 
+			spaceCategory = #{spaceCategory}, 
+			region = #{region}
+				where idx = #{space_idx}
+	</update>
+<!-- modify 끝 -->
+
+<!-- holiday 시작 -->
+	<select id="selectHolidayList" parameterType="int" resultType="reserve">
+		select * from reserve where space_idx = ${space_idx} and status = '0'
+	</select>
+	
+	<insert id="insertHoliday" parameterType="reserve">
+		insert into reserve 
+		(space_idx, member_idx, startTime, endTime, reserverName, reserverNumber, status, pay_payIdx)
+		values (
+		#{space_idx}, 
+		#{member_idx}, 
+		TO_DATE('${startTime}', 'YYYY-MM-DD HH24:MI'), 
+		TO_DATE('${endTime}', 'YYYY-MM-DD HH24:MI') - INTERVAL '1' MINUTE, 
+		#{reserverName}, 
+		'-', 0, 'holiday')
+	</insert>
+	
+	<delete id="deleteHoliday" parameterType="int">
+		delete reserve where idx = ${idx}
+	</delete>
+	
+	<select id="holidayCheck" parameterType="reserve" resultType="int">
+		<![CDATA[
+		select 
+			count(*)
+		from reserve
+		where space_idx = #{space_idx}
+		and
+		status = 0
+		and (
+		    (startTime <= TO_DATE('${startTime}', 'YYYY-MM-DD HH24:MI') AND endTime >= TO_DATE('${endTime}', 'YYYY-MM-DD HH24:MI'))
+		    OR
+		    (TO_DATE('${startTime}', 'YYYY-MM-DD HH24:MI') <= startTime AND TO_DATE('${endTime}', 'YYYY-MM-DD HH24:MI') >= startTime)
+		    )
+		]]>
+	</select>
+<!-- holiday 끝 -->
+
+<!-- review 시작 -->
+	<select id="selectSpaceByBoardIdx" parameterType="int" resultType="space">
+		select * from space where board_idx = ${board_idx}
+	</select>
+
+	<insert id="insertReview" parameterType="hashmap">
+		insert into review (board_idx, member_idx, content, score)
+		 values
+		 	(#{board_idx}, #{member_idx}, #{content}, #{score})
+	</insert>
+	
+	<delete id="deleteReview" parameterType="int">
+		delete review where idx = ${idx}
+	</delete>
+<!-- review 끝 -->
+
+<!-- facility 시작 -->
+	<insert id="insertFacility" parameterType="hashmap">
+		insert into facility (space_idx, title, content) values (#{space_idx}, #{title}, #{content})
+	</insert>
+
+	<delete id="deleteFacility" parameterType="int">
+		delete facility where idx = ${idx}
+	</delete>
+<!-- facility 끝 -->
+
+<!-- 예약 중복 확인 -->
+	<select id="checkReserve" parameterType="reserve" resultType="int">
+		<![CDATA[
+		select 
+			count(*)
+		from reserve
+		where space_idx = #{space_idx}
+		and (
+		    (startTime <= TO_DATE('${startTime}', 'YYYY-MM-DD HH24:MI') AND endTime >= TO_DATE('${endTime}', 'YYYY-MM-DD HH24:MI')-INTERVAL '1' MINUTE)
+		    OR
+		    (TO_DATE('${startTime}', 'YYYY-MM-DD HH24:MI') <= startTime AND TO_DATE('${endTime}', 'YYYY-MM-DD HH24:MI')-INTERVAL '1' MINUTE >= startTime)
+		     OR
+		    (TO_DATE('${startTime}', 'YYYY-MM-DD HH24:MI') <= endTime AND TO_DATE('${endTime}', 'YYYY-MM-DD HH24:MI')-INTERVAL '1' MINUTE >= endTime) 
+		     OR
+		    (TO_DATE('${startTime}', 'YYYY-MM-DD HH24:MI') <= startTime AND TO_DATE('${endTime}', 'YYYY-MM-DD HH24:MI')-INTERVAL '1' MINUTE >= endTime) 
+		    )
+		]]>
+	</select>
+<!-- 예약 정보 저장 -->
+	<insert id="insertReserve" parameterType="reserve">
+		insert into reserve (
+			space_idx, 
+			member_idx, 
+			startTime, 
+			endTime, 
+			reserverName, 
+			reserverNumber,
+			pay_payIdx
+		)values (
+			#{space_idx}, 
+			#{member_idx}, 
+			TO_DATE('${startTime}', 'YYYY-MM-DD HH24:MI'), 
+			TO_DATE('${endTime}', 'YYYY-MM-DD HH24:MI') - INTERVAL '1' MINUTE,  
+			#{reserverName}, 
+			#{reserverNumber},
+			#{pay_payIdx}
+		)
+	</insert>
+<!-- 결제 정보 저장 -->
+	<insert id="payInsert" parameterType="pay">
+		insert into pay (
+			payIdx, 
+			reserveNum, 
+			reservePrice
+			)values (
+			#{payIdx}, 
+			#{reserveNum}, 
+			#{reservePrice}
+			)
+		
+	</insert>
+<!-- 멤버idx(수요자) 예약리스트 조회(현재 남아있는 예약) -->
+   <select id="selectAllReserveByMemberIdx" parameterType="int" resultType="reserve">
+      SELECT 
+          sp.spaceName,
+          re.*,
+          re.member_idx AS member_idx,
+          re.idx AS idx,
+          re.reserverName AS reserverName,
+          re.reserverNumber AS reserverNumber,
+          TO_char(re.startTIme, 'YYYY-MM-DD HH24:MI') as startTime,
+          TO_char(re.endTIme, 'YYYY-MM-DD HH24:MI') as endTime
+      FROM reserve re
+      JOIN space sp 
+      ON re.space_idx = sp.idx
+      WHERE re.member_idx = #{member_idx} and re.status = 1
+         order by re.starttime
+   </select>
+   
+   <!-- 멤버idx(수요자) 예약리스트 조회하기 전에 지난 예약 status 2로 변경하기 -->
+   <update id="pastReservations">
+      <![CDATA[
+         update reserve set status = 2
+            WHERE 
+               to_char(starttime, 'YYYY-MM-DD HH24:mi') 
+               < to_char(SYSTIMESTAMP, 'YYYY-MM-DD HH24:mi')
+      ]]>
+   </update>
+   <!-- 멤버idx(수요자) 지난 예약리스트 조회 -->
+   <!-- 지난 예약은 stuts=2로 변경 되어있음 -->
+   <select id="selectAllPastReseveSpaceByMemberIdx" parameterType="int" resultType="reserve">
+      SELECT 
+          sp.spaceName,
+          re.*,
+          re.member_idx AS member_idx,
+          re.idx AS idx,
+          re.reserverName AS reserverName,
+          re.reserverNumber AS reserverNumber,
+          TO_char(re.startTIme, 'YYYY-MM-DD HH24:MI') as startTime,
+          TO_char(re.endTIme, 'YYYY-MM-DD HH24:MI') as endTime
+      FROM reserve re
+      JOIN space sp 
+      ON re.space_idx = sp.idx
+      WHERE re.member_idx = #{member_idx} and re.status = 2
+         order by re.starttime
+   </select>
+   
+   
+   <!-- 멤버idx(공급자)가 등록 된 공간에 된 예약리스트 조회 -->
+   <select id="selectAllReserveBySuppMemberIdx" parameterType="int"
+      resultType="reserve">
+      select
+      *
+      from reserve RE
+      join space S
+      on RE.space_idx = S.idx
+      join board B
+      on S.board_idx = B.idx
+      join member M
+      on B.member_idx = M.idx
+      where B.member_idx = #{idx}
+         order by re.starttime
+   </select>
+	
+	
+	<!-- 예약 날짜 선택하면 그 날짜에 예약된 리스트 띄움 -->
+	<select id="selectAllStartTime" parameterType="hashmap" resultType="reserve">
+		SELECT 
+				TO_char(startTIme, 'HH24:MI') as startTime,
+				TO_char(endTIme + INTERVAL '1' MINUTE, 'HH24:MI')as endTime
+				
+			FROM reserve
+			WHERE space_idx = #{spaceIdx}
+			  AND TRUNC(startTime) = TO_DATE('${startDay}', 'YYYY-MM-DD')
+			    ORDER BY startTime
+	
+	</select>
+	<!-- 예약 취소를 위해 예약 정보 가져오기 -->
+	<select id="selectByReserveIdx" parameterType="int" resultType="reserve">
+		select * from reserve where idx=#{idx}
+	</select>
+	<!-- 예약 취소 -->
+	<delete id="deleteReserveByIdx" parameterType="int">
+		delete from reserve where idx = #{idx}
+	</delete>
+	<!-- 결제 테이블에서 삭제 -->
+	<delete id="deletePayIdx" parameterType="String">
+		delete from pay where payIdx= #{payIdx}
+	</delete>
+	<select id="selectAllScrapByMemberIdx" parameterType="int" resultType="scrap">
+      select 
+          SP.region ,
+          SP.spaceName,
+          SP.spaceCategory,
+          SC.*
+              from scrap SC
+              join space  SP
+              on SC.space_idx = SP.idx
+                  where SC.member_idx = #{idx}
+                  order by SC.idx
+   </select>
+   
+   <!-- 공급자가 등록한 공간 목록 불러오기 -->
+   <select id="selectAllSpaceByMemberIdx" parameterType="int"
+      resultType="space">
+   select 
+    sp.* 
+        from space SP
+        join board B  
+            on sp.board_idx = B.idx   
+        join member M
+            on B.member_idx = m.idx
+             where m.idx = #{idx}
+             order by SP.idx
+   </select>
+</mapper>

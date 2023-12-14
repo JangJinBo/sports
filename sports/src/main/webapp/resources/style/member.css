@@ -1,0 +1,215 @@
+@charset 'utf-8';
+button:hover{
+	cursor: pointer;
+}
+#mypageMain{
+	padding: 30px;
+	margin: auto;
+	border: 1px solid black;
+	border-radius: 20px; 
+	box-shadow: 
+}
+
+#mypage > div{
+	margin : 30px;
+	border: 1px solid black;
+	border-radius: 20px; 
+	
+}
+#mypage > div:last-child{
+	padding: 20px 0;
+}
+input[readonly]{
+	border: none;	
+}
+
+#profile > div{
+	padding-left: 10px;
+}
+#profile > p{
+	border: 2px solid #dadada;
+	padding: 10px;
+	border-radius: 20px;
+	width: 100%;
+	margin-top: 10px;
+}
+#profile > a{
+	color: blue;
+}
+#profile > a:hover{
+	text-decoration: underline;
+}
+
+
+
+
+
+.regForm{
+	width: 100%;
+	font-size: 1.1rem;
+	margin: 20px 0px;
+}
+.regForm input, .regForm textarea, .regForm select{
+	outline: none;
+	padding: 10px;
+	border: 3px solid #dadada;
+	font-size: 1rem;
+}
+.regForm input:focus, .regForm textarea:focus, .regForm select:focus{
+	border: 3px solid #a0c0f0;
+}
+.regForm input{
+	width: 300px;
+}
+.regForm input[type="submit"]{
+	color: white;
+	background-color: #bbb;
+}
+.regForm input[type="submit"]:focus{
+	background-color: #a0c0f0;
+}
+.regForm input[type="submit"]:hover{
+	background-color: #a0c0f0;
+	cursor: pointer;
+}
+.regForm input[type="button"]:hover{
+	cursor: pointer;
+}
+.regForm input[type="checkbox"]{
+	width: 20px;
+}
+.regForm textarea{
+	width: 500px;
+	resize: none;
+	height: 250px;
+}
+
+#regtb{
+	width: 900px;
+}
+#regtb td{
+	width: 200px;
+	height: 60px;
+}
+
+#regtb tr{
+	border: 3px solid #dadada;
+}
+
+#newPassword{
+	border: 3px solid #ffaaaa;
+}
+#deleteMember{
+	padding: 10px;
+	width: 300px;
+	background-color: #f08080;
+	color: white;
+	border: 3px solid #ffaaaa;
+	margin-left: 220px;
+	font-size: 1rem;
+	outline: none;
+}
+#mypageSpaceList{
+	text-align: center;
+	max-height: 580px;
+	overflow-y: auto;
+}
+#adminMypageCenter{
+	text-align: center;
+}
+.mlHead{
+	font-size: 1.1rem;
+	font-weight: bold;
+	margin: auto;
+/* 	margin-left: 80px; */
+	padding-top: 20px;
+}
+
+.rsdiv{
+	width: 400px;
+	margin: 20px;
+	padding: 20px;
+	border: 2px solid #dadada;
+	border-radius:  20px;
+	font-size: 1rem;
+}
+.rsdiv > div:nth-child(2){
+	padding: 10px 0;
+	display: flex;
+	justify-content: space-between;
+}
+.rsdiv > div > span{
+	font-weight: bold;
+}
+.rsdiv a{
+	width: 100px;
+}
+.rsdiv button{
+	border: 2px solid #ddd;
+}
+
+.scraptb{
+	width: 600px;
+	margin: 20px;
+}
+.scraptb td, .scraptb th{
+	padding: 20px 0px;
+	text-align: center;
+}
+.scraptb th{
+	background-color: #a0c0f0;
+}
+.scraptb td{
+	background-color: #e0e0f0;
+}
+
+.suprstb{
+	width: 1100px;
+	margin: 20px;
+}
+.suprstb td, .suprstb th{
+	padding: 10px;
+	text-align: center;
+}
+.suprstb th{
+	background-color: #f0f0a0;
+}
+.suprstb td{
+	background-color: #f0f0e0;
+}
+.suprstb th:nth-child(3){
+	width: 100px;
+}
+.suprstb td:nth-child(3){
+	width: 100px;
+}
+.sptb{
+	width: 600px;
+	margin: 20px;
+}
+.sptb td, .sptb th{
+	padding: 10px;
+	text-align: center;
+}
+.sptb th{
+	background-color: #a0c0f0;
+}
+.sptb td{
+	background-color: #e0e0f0;
+}
+
+#mypageSpaceList::-webkit-scrollbar {
+	width: 5px;
+}
+#mypageSpaceList::-webkit-scrollbar-thumb {
+	background-color: #dadada;
+	border: none;
+}
+#mypageSpaceList::-webkit-scrollbar-track {
+	opacity: 0;
+}
+
+.past > td{
+	background-color: #d0d0c0;
+}
+
